@@ -1,0 +1,1 @@
+export { default } from 'ember-sidebars/components/show-sidebar';

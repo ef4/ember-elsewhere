@@ -1,0 +1,6 @@
+<div>This is the second page.</div>
+{{#each handled as |h|}}
+  <div>{{h}}</div>
+{{/each}}
+
+{{in-sidebar name="tools" show=(component "second-tools" doIt=(action "handleIt") ) }}
