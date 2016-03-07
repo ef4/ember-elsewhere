@@ -1,6 +1,11 @@
+{{!- BEGIN-SNIPPET second }}
 <div>This is the second page.</div>
 {{#each handled as |h|}}
   <div>{{h}}</div>
 {{/each}}
 
-{{in-sidebar name="tools" show=(component "second-tools" doIt=(action "handleIt") ) }}
+{{in-sidebar name="tools"
+             show=(component "second-tools" doIt=(action "handleIt") ) }}
+{{!- END-SNIPPET }}
+
+{{code-snippet name="second.hbs"}}

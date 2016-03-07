@@ -1,3 +1,4 @@
+<div class="v-container">
 {{#with-sidebar name="tools" as |tools|}}
   <div class="topbar">
     {{#liquid-bind tools as |tools|}}
@@ -13,7 +14,7 @@
     <ol>
       <li>The blue area is a sidebar named "right", rendered by <code>\{{show-sidebar name="right"}}</code>.</li>
 
-      <li>The green area is a sidebar named "tools", rendered by a <code>\{{#with-sidebar}}</code> component that allows it to be composed with liquid-fire animations.</li>
+      <li>The green area (visible only on some pages) is a sidebar named "tools", rendered by a <code>\{{#with-sidebar}}</code> component that allows it to be composed with liquid-fire animations.</li>
     </ol>
 
     <p>As you use the links below to switch between the three routes, each route can choose to place content into either of the sidebars by including <code>\{{in-sidebar}}</code>. </p>
@@ -31,4 +32,5 @@
     {{show-sidebar name="right"}}
   </div>
 
+</div>
 </div>
