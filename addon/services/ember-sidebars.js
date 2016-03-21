@@ -8,8 +8,8 @@ export default Service.extend({
     this._showQueue = A();
     this._clearQueue = A();
   },
-  show(name, component) {
-    this._showQueue.push({ name, component });
+  show(name, component, hooks) {
+    this._showQueue.push({ name, component, hooks });
     this._schedule();
   },
   clear(name) {
@@ -28,8 +28,8 @@ export default Service.extend({
     clear.forEach(name => {
       actives.set(name || 'default', null);
     });
-    show.forEach(({ name, component }) => {
-      actives.set(name || 'default', component);
+    show.forEach(({ name, component, hooks }) => {
+      actives.set(name || 'default', { component, hooks });
     });
   }
 });
