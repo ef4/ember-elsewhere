@@ -45,6 +45,26 @@ For fancier behaviors, you can use `{{#with-sidebar}}` instead of `{{show-sideba
 
 ember-sidebars is also a great way to do modals, since modals are just another thing that you want to render "elsewhere" in the DOM. [Here is a gist with an example.](https://gist.github.com/ef4/0bcc6f7c99dafffdf6cc)
 
+## Passing additional state through to sidebar
+
+Sometime you may want to pass an action or value into the sidebar that is accessible outside the closed-over component. There is an optional `hooks` argument for that.
+
+```hbs
+{{in-sidebar name="modal" component=(component "warning-message") hooks=(hash onOutsideClick=(action "close"))}}
+```
+
+```hbs
+{{#with-sidebar name="modal" as |component hooks|}}
+  <div class="modal-container" onclick={{action hooks.outsideClick}}>
+    <div class="modal-dialog" >
+      {{component modalContent}}
+    </div>
+  </div>    
+{{/with-sidebar}}
+```
+
+A more comprehensive example of the above modal behavior [is available here](https://gist.github.com/ef4/0bcc6f7c99dafffdf6cc).
+
 ## Installation
 
 * `git clone` this repository
