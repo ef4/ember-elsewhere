@@ -1,10 +1,20 @@
-# Ember-sidebars
+# ember-sidebars
+
+[![NPM][npm-badge-img]][npm-badge-link]
+[![Ember Observer Score][ember-observer-badge]][ember-observer-url]
+![Ember Version][ember-version]
 
 This addon makes it easy to manage sidebars, toolbars, or any piece of DOM that you want to lift outside your normal route hiearchy.
 
 It is similar to [ember-wormhole](https://github.com/yapplabs/ember-wormhole), but is more suitable when your target is your own Ember component (as opposed to arbitrary, potentially foreign DOM).
 
 The best documentation is the sample application in `tests/dummy`, which is also running at [http://ef4.github.io/ember-sidebars/](http://ef4.github.io/ember-sidebars/).
+
+## Install
+
+```no-highlight
+ember install ember-sidebars
+```
 
 ## Components
 
@@ -56,3 +66,9 @@ For fancier behaviors, you can use `{{#with-sidebar}}` instead of `{{show-sideba
 * `ember build`
 
 For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
+
+[npm-badge-img]: https://badge.fury.io/js/ember-sidebars.svg
+[npm-badge-link]: http://badge.fury.io/js/ember-sidebars
+[ember-observer-badge]: http://emberobserver.com/badges/ember-sidebars.svg
+[ember-observer-url]: http://emberobserver.com/addons/ember-sidebars
+[ember-version]: https://embadge.io/v1/badge.svg?start=1.13.0
