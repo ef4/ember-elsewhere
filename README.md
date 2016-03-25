@@ -43,6 +43,7 @@ For fancier behaviors, you can use `{{#with-sidebar}}` instead of `{{show-sideba
 {{/with-sidebar}}
 ```
 
+ember-sidebars is also a great way to do modals, since modals are just another thing that you want to render "elsewhere" in the DOM. [Here is a gist with an example.](https://gist.github.com/ef4/0bcc6f7c99dafffdf6cc).
 
 ## Installation
 
