@@ -28,7 +28,7 @@ From elsewhere, declare which component should render in the sidebar -- complete
 
 
 ```hbs
-{{in-sidebar name="my-right-sidebar" show=(component "cool-thing" model=model launch=(action "launchIt") }}
+{{in-sidebar name="my-right-sidebar" show=(component "cool-thing" model=model launch=(action "launchIt"))}}
 ```
 
 For fancier behaviors, you can use `{{#with-sidebar}}` instead of `{{show-sidebar}}` which gives you an opportunity to extend the sidebar's behavior in arbitrary ways. For example, this lets your sidebar animate as its content changes:
