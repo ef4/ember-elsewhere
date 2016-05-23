@@ -54,8 +54,8 @@ Sometime you may want to pass an action or value into the sidebar that is access
 ```
 
 ```hbs
-{{#with-sidebar name="modal" as |component hooks|}}
-  <div class="modal-container" onclick={{action hooks.outsideClick}}>
+{{#with-sidebar name="modal" as |modalContent hooks|}}
+  <div class="modal-container" onclick={{action hooks.onOutsideClick}}>
     <div class="modal-dialog" >
       {{component modalContent}}
     </div>
