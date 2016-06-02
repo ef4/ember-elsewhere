@@ -1,3 +1,3 @@
-{{#if (get sidebars.actives _name)}}
-  {{component (get (get sidebars.actives _name) 'component') }}
-{{/if}}
+{{#with (get sidebars.actives _name) as |name|}}
+  {{component (get name 'component') }}
+{{/with}}
