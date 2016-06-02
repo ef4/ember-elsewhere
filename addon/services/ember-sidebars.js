@@ -1,35 +1,40 @@
 import Ember from 'ember';
-const { A, Service, run, Object: EmObject } = Ember;
+const { Service, run, Object: EmObject } = Ember;
 
 export default Service.extend({
   init() {
     this._super();
     this.set('actives', EmObject.create());
-    this._showQueue = A();
-    this._clearQueue = A();
+    this._alive = {};
+    this._counter = 1;
   },
-  show(name, component, hooks) {
-    this._showQueue.push({ name, component, hooks });
+  show(sourceId, name, component, hooks) {
+    this._alive[sourceId] = {
+      target: name || 'default',
+      component,
+      hooks,
+      order: this._counter++
+    };
     this._schedule();
   },
-  clear(name) {
-    this._clearQueue.push(name);
+  clear(sourceId) {
+    delete this._alive[sourceId];
     this._schedule();
   },
   _schedule() {
     run.scheduleOnce('afterRender', this, this._process);
   },
   _process() {
-    let actives = this.get('actives');
-    let clear = this._clearQueue;
-    let show = this._showQueue;
-    this._clearQueue = A();
-    this._showQueue = A();
-    clear.forEach(name => {
-      actives.set(name || 'default', null);
+    let newActives = {};
+    let alive = this._alive;
+
+    Object.keys(alive).forEach(sourceId => {
+      let { target, component, hooks, order } = alive[sourceId];
+      let existing = newActives[target];
+      if (!existing || existing.order < order) {
+        newActives[target] = component ? { component, hooks, order } : null;
+      }
     });
-    show.forEach(({ name, component, hooks }) => {
-      actives.set(name || 'default', { component, hooks });
-    });
+    this.set('actives', EmObject.create(newActives));
   }
 });
