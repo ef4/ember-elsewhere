@@ -1,7 +1,7 @@
 {
-  "name": "ember-sidebars",
-  "version": "0.2.2",
-  "description": "Composable sidebar management.",
+  "name": "ember-elsewhere",
+  "version": "0.3.0",
+  "description": "Render elsewhere in the DOM, with nice composition, animation, etc. Based on 100% public API.",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -11,7 +11,7 @@
     "start": "ember server",
     "test": "ember try:testall"
   },
-  "repository": "https://github.com/ef4/ember-sidebars",
+  "repository": "https://github.com/ef4/ember-elsewhere",
   "engines": {
     "node": ">= 0.10.0"
   },
@@ -44,7 +44,12 @@
     "loader.js": "^4.0.0"
   },
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "wormhole",
+    "modal",
+    "popup",
+    "sidebar",
+    "toolbar"
   ],
   "dependencies": {
     "ember-cli-babel": "^5.1.5",
@@ -52,6 +57,6 @@
   },
   "ember-addon": {
     "configPath": "tests/dummy/config",
-    "demoURL": "http://ef4.github.io/ember-sidebars/"
+    "demoURL": "http://ef4.github.io/ember-elsewhere/"
   }
 }

@@ -3,12 +3,12 @@ import layout from '../templates/components/in-sidebar';
 
 export default Ember.Component.extend({
   layout,
-  sidebars: Ember.inject.service('ember-sidebars'),
+  service: Ember.inject.service('ember-elsewhere'),
   willRender() {
-    this.get('sidebars').show(Ember.guidFor(this), this.get('name'), this.get('show'), this.get('hooks'));
+    this.get('service').show(Ember.guidFor(this), this.get('name'), this.get('show'), this.get('hooks'));
   },
   willDestroyElement() {
-    this.get('sidebars').clear(Ember.guidFor(this));
+    this.get('service').clear(Ember.guidFor(this));
   }
 
 });

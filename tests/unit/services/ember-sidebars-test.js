@@ -1,7 +1,7 @@
 import { moduleFor, test } from 'ember-qunit';
 import run from 'ember-runloop';
 
-moduleFor('service:ember-sidebars', 'Unit | Service | ember sidebars', {
+moduleFor('service:ember-elsewhere', 'Unit | Service | ember elsewhere', {
 });
 
 test('it exposes currently active component', function(assert) {

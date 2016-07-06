@@ -2,5 +2,5 @@
 'use strict';
 
 module.exports = {
-  name: 'ember-sidebars'
+  name: 'ember-elsewhere'
 };

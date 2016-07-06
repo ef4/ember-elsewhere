@@ -1,1 +1,1 @@
-export { default } from 'ember-sidebars/components/in-sidebar';
+export { default } from 'ember-elsewhere/components/in-sidebar';
