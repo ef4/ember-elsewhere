@@ -4,8 +4,7 @@
   <div>{{h}}</div>
 {{/each}}
 
-{{in-sidebar name="tools"
-             show=(component "second-tools" doIt=(action "handleIt") ) }}
+{{to-elsewhere named="tools" show=(component "second-tools" doIt=(action "handleIt") ) }}
 {{!- END-SNIPPET }}
 
 {{code-snippet name="second.hbs"}}

@@ -1,9 +1,15 @@
-import ShowSidebar from './show-sidebar';
-import layout from '../templates/components/with-sidebar';
+import layout from '../templates/components/from-elsewhere';
 import Ember from 'ember';
 
-export default ShowSidebar.extend({
+export default Ember.Component.extend({
   layout,
+  service: Ember.inject.service('ember-elsewhere'),
+
+  didReceiveAttrs() {
+    if (!this.get('name')) {
+      this.set('name', 'default');
+    }
+  },
 
   // We don't yield any content on the very first render pass, because
   // we want to give any concurrent {{in-sidebar}} components a chance

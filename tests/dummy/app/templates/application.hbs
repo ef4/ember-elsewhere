@@ -1,11 +1,11 @@
 <div class="v-container">
-{{#with-sidebar name="tools" as |tools|}}
+{{#from-elsewhere name="tools" as |tools|}}
   <div class="topbar">
     {{#liquid-bind tools as |tools|}}
       {{component tools}}
     {{/liquid-bind}}
   </div>
-{{/with-sidebar}}
+{{/from-elsewhere}}
 
 <div class="container">
   <main>
@@ -29,7 +29,7 @@
   </main>
 
   <div class="right-sidebar">
-    {{show-sidebar name="right"}}
+    {{from-elsewhere name="right"}}
   </div>
 
 </div>

@@ -1,7 +1,7 @@
 {{!- BEGIN-SNIPPET index }}
 This is the first page. The model says: {{model.title}}
 
-{{in-sidebar name="right" show=(component "first-sidebar" model=model)}}
+{{to-elsewhere named="right" show=(component "first-sidebar" model=model)}}
 {{!- END-SNIPPET }}
 
 {{code-snippet name="index.hbs"}}

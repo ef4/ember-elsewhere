@@ -1,0 +1,9 @@
+{{#if initialized}}
+  {{#if hasBlock}}
+    {{yield (get (get service.actives name) 'component') (get (get service.actives name) 'hooks')}}
+  {{else}}
+    {{#with (get service.actives name) as |name|}}
+      {{component (get name 'component') }}
+    {{/with}}
+  {{/if}}
+{{/if}}
