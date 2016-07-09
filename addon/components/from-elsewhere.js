@@ -12,7 +12,7 @@ export default Ember.Component.extend({
   },
 
   // We don't yield any content on the very first render pass, because
-  // we want to give any concurrent {{in-sidebar}} components a chance
+  // we want to give any concurrent {{to-elsewhere}} components a chance
   // to declare their intentions first. This allows the components
   // inside us to see a meaningful initial value on their initial
   // render.

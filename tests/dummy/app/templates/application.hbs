@@ -1,3 +1,5 @@
+{{modal-target}}
+
 <div class="v-container">
 {{#from-elsewhere name="tools" as |tools|}}
   <div class="topbar">
@@ -7,30 +9,31 @@
   </div>
 {{/from-elsewhere}}
 
-<div class="container">
-  <main>
-    <p>This app demonstrates two examples of <a href="https://github.com/ef4/ember-elsewhere">Ember Elsewhere</a>.</p>
+  <div class="container">
+    <main>
+      <p>This app demonstrates the <a href="https://github.com/ef4/ember-elsewhere">Ember Elsewhere</a> addon. It contains three elsewhere targets:</p>
 
-    <ol>
-      <li>The blue area is a sidebar named "right", rendered by <code>\{{show-sidebar name="right"}}</code>.</li>
+      <ol>
+        <li>The blue sidebar is a target named "right", implemented as <code>\{{from-elsewhere name="right"}}</code>.</li>
 
-      <li>The green area (visible only on some pages) is a sidebar named "tools", rendered by a <code>\{{#with-sidebar}}</code> component that allows it to be composed with liquid-fire animations.</li>
-    </ol>
+        <li>The green toolbar (visible only on some pages) is a target named "tools", implemented with a <code>\{{#from-elsewhere}}</code> component that allows it to be composed with liquid-fire animations.</li>
+        <li>There is a "modal" target that demonstrates animated modals. See the button on {{#link-to "third"}}Third Page{{/link-to}}.</li>
+      </ol>
 
-    <p>As you use the links below to switch between the three routes, each route can choose to place content into either of the sidebars by including <code>\{{in-sidebar}}</code>. </p>
+      <p>As you use the links below to switch between the three routes, each route can choose to place content into either of the sidebars by including <code>\{{in-sidebar}}</code>. </p>
 
-    <nav>
-      {{#link-to 'index'}}First Page{{/link-to}}
-      {{#link-to 'second'}}Second Page{{/link-to}}
-      {{#link-to 'third'}}Third Page{{/link-to}}
-    </nav>
+      <nav>
+        {{#link-to 'index'}}First Page{{/link-to}}
+        {{#link-to 'second'}}Second Page{{/link-to}}
+        {{#link-to 'third'}}Third Page{{/link-to}}
+      </nav>
 
-    {{outlet}}
-  </main>
+      {{outlet}}
+    </main>
 
-  <div class="right-sidebar">
-    {{from-elsewhere name="right"}}
+    <div class="right-sidebar">
+      {{from-elsewhere name="right"}}
+    </div>
+
   </div>
-
-</div>
 </div>

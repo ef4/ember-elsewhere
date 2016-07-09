@@ -1,0 +1,12 @@
+{{#from-elsewhere name="modal" as |modal|}}
+  {{#liquid-bind modal containerless=true as |currentModal|}}
+    {{#if currentModal}}
+      <div class="modal-background"></div>
+      <div class="modal-container" onclick={{action (ignore-children currentModal.onOutsideClick) }}>
+        <div class="modal-dialog" >
+          {{component currentModal.body}}
+        </div>
+      </div>
+    {{/if}}
+  {{/liquid-bind}}
+{{/from-elsewhere}}

@@ -45,3 +45,31 @@ nav a.active {
     background-color: #E0E059;
     color: black;
 }
+
+.modal-background {
+    background-color: black;
+    opacity: 0.5;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.modal-container {
+   width: 100vw;
+   height: 100vh;
+   position: fixed;
+   top: 0;
+   left: 0;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.modal-dialog {
+    background-color: white;
+    padding: 4em;
+    border-radius: 5px;
+    border: 1px solid #B4B4E8;
+}

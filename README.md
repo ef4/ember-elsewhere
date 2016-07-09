@@ -18,52 +18,53 @@ ember install ember-elsewhere
 
 ## Components
 
-Create a sidebar named "my-right-sidebar":
+Create a target named "my-right-sidebar":
 
 ```hbs
-{{show-sidebar name="my-right-sidebar"}}
+{{from-elsewhere name="my-right-sidebar"}}
 ```
 
-From elsewhere, declare which component should render in the sidebar -- complete with bound inputs and actions:
-
+Anywhere else in your app, declare which component should render in the target -- complete with bound inputs and actions:
 
 ```hbs
-{{in-sidebar name="my-right-sidebar" show=(component "cool-thing" model=model launch=(action "launchIt"))}}
+{{to-elsewhere named="my-right-sidebar" send=(component "cool-thing" model=model launch=(action "launchIt"))}}
 ```
 
-For fancier behaviors, you can use `{{#with-sidebar}}` instead of `{{show-sidebar}}` which gives you an opportunity to extend the sidebar's behavior in arbitrary ways. For example, this lets your sidebar animate as its content changes:
+For fancier behaviors, you can use the block form of `{{#from-elsewhere}}`, which gives you an opportunity to extend the target's behavior in arbitrary ways. For example, this lets your target animate as its content changes:
 
 ```hbs
-{{#with-sidebar name="my-right-sidebar" as |sidebar|}}
-  <div class="topbar">
-    {{#liquid-bind sidebar as |currentSidebar|}}
-      {{component currentSidebar}}
-    {{/liquid-bind}}
-  </div>
-{{/with-sidebar}}
-```
-
-ember-elsewhere is also a great way to do modals, since modals are just another thing that you want to render "elsewhere" in the DOM. [Here is a gist with an example.](https://gist.github.com/ef4/0bcc6f7c99dafffdf6cc)
-
-## Passing additional state through to sidebar
-
-Sometime you may want to pass an action or value into the sidebar that is accessible outside the closed-over component. There is an optional `hooks` argument for that.
-
-```hbs
-{{in-sidebar name="modal" component=(component "warning-message") hooks=(hash onOutsideClick=(action "close"))}}
-```
-
-```hbs
-{{#with-sidebar name="modal" as |modalContent hooks|}}
-  <div class="modal-container" onclick={{action hooks.onOutsideClick}}>
-    <div class="modal-dialog" >
-      {{component modalContent}}
+{{#from-elsewhere name="modal" as |modal|}}
+  {{#liquid-bind modal as |currentModal|}}
+    <div class="modal-background"></div>
+    <div class="modal-container">
+      {{component modal}}
     </div>
-  </div>    
-{{/with-sidebar}}
+  {{/liquid-bind}}
+{{/from-elsewhere}}
 ```
 
-A more comprehensive example of the above modal behavior [is available here](https://gist.github.com/ef4/0bcc6f7c99dafffdf6cc).
+## Passing additional state through to the target
+
+When you're using the block form of `from-elsewhere`, it's entirely up to you what value you send to the target. It can be more than just a component. Here is a complete example of an animatable modal that supports an `onOutsideClick` action while providing shared layout for the background and container:
+
+```hbs
+{{to-elsewhere named="modal"
+               send=(hash body=(component "warning-message")
+                          onOutsideClick=(action "close")) }}
+```
+
+```hbs
+{{#from-elsewhere name="modal" as |modal|}}
+  {{#liquid-bind modal as |currentModal|}}
+    <div class="modal-background"></div>
+    <div class="modal-container" onclick={{action currentModal.onOutsideClick}}>
+      <div class="modal-dialog" >
+        {{component currentModal.body}}
+      </div>
+    </div>
+  {{/liquid-bind}}
+{{/from-elsewhere}}
+```
 
 ## Installation
 
