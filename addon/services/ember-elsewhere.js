@@ -8,11 +8,10 @@ export default Service.extend({
     this._alive = {};
     this._counter = 1;
   },
-  show(sourceId, name, component, hooks) {
+  show(sourceId, name, component) {
     this._alive[sourceId] = {
       target: name || 'default',
       component,
-      hooks,
       order: this._counter++
     };
     this._schedule();
@@ -29,10 +28,10 @@ export default Service.extend({
     let alive = this._alive;
 
     Object.keys(alive).forEach(sourceId => {
-      let { target, component, hooks, order } = alive[sourceId];
+      let { target, component, order } = alive[sourceId];
       let existing = newActives[target];
       if (!existing || existing.order < order) {
-        newActives[target] = component ? { component, hooks, order } : null;
+        newActives[target] = component ? { component, order } : null;
       }
     });
     this.set('actives', EmObject.create(newActives));

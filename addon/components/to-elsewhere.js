@@ -5,7 +5,7 @@ export default Ember.Component.extend({
   layout,
   service: Ember.inject.service('ember-elsewhere'),
   willRender() {
-    this.get('service').show(Ember.guidFor(this), this.get('named'), this.get('send'), this.get('hooks'));
+    this.get('service').show(Ember.guidFor(this), this.get('named'), this.get('send'));
   },
   willDestroyElement() {
     this.get('service').clear(Ember.guidFor(this));
