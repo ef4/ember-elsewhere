@@ -3,8 +3,8 @@
 <div class="v-container">
 {{#from-elsewhere name="tools" as |tools|}}
   <div class="topbar">
-    {{#liquid-bind tools as |tools|}}
-      {{component tools}}
+    {{#liquid-bind tools rules=toolsAnimationRules as |t|}}
+      {{component t}}
     {{/liquid-bind}}
   </div>
 {{/from-elsewhere}}
