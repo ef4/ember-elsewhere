@@ -56,8 +56,8 @@ When you're using the block form of `from-elsewhere`, it's entirely up to you wh
 ```hbs
 {{#from-elsewhere name="modal" as |modal|}}
   {{#liquid-bind modal as |currentModal|}}
-    <div class="modal-background"></div>
-    <div class="modal-container" onclick={{action currentModal.onOutsideClick}}>
+    <div class="modal-container">
+      <div class="modal-background" onclick={{action currentModal.onOutsideClick}}></div>
       <div class="modal-dialog" >
         {{component currentModal.body}}
       </div>

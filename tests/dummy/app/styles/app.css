@@ -72,4 +72,6 @@ nav a.active {
     padding: 4em;
     border-radius: 5px;
     border: 1px solid #B4B4E8;
+    position: relative;
+    z-index: 1;
 }
