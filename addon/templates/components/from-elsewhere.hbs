@@ -1,9 +1,9 @@
 {{#if initialized}}
   {{#if hasBlock}}
-    {{yield (get (get service.actives name) 'component') (get (get service.actives name) 'hooks')}}
+    {{yield (get (get service.actives name) 'component') }}
   {{else}}
-    {{#with (get service.actives name) as |name|}}
-      {{component (get name 'component') }}
+    {{#with (get (get service.actives name) 'component') as |c|}}
+      {{component c}}
     {{/with}}
   {{/if}}
 {{/if}}
