@@ -4,6 +4,7 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   layout,
   service: Ember.inject.service('ember-elsewhere'),
+  tagName: '',
 
   didReceiveAttrs() {
     if (!this.get('name')) {

@@ -1,6 +1,6 @@
 {
   "name": "ember-elsewhere",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Render elsewhere in the DOM, with nice composition, animation, etc. Based on 100% public API.",
   "directories": {
     "doc": "doc",
