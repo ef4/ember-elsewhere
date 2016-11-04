@@ -40,7 +40,7 @@
     "ember-export-application-global": "^1.0.4",
     "ember-load-initializers": "^0.5.0",
     "ember-resolver": "^2.0.3",
-    "ember-try": "^0.1.2",
+    "ember-try": "^0.2.7",
     "liquid-fire": "0.24.0",
     "loader.js": "^4.0.0"
   },
@@ -58,6 +58,9 @@
   },
   "ember-addon": {
     "configPath": "tests/dummy/config",
-    "demoURL": "http://ef4.github.io/ember-elsewhere/"
+    "demoURL": "http://ef4.github.io/ember-elsewhere/",
+    "versionCompatibility": {
+      "ember": ">=2.3.0"
+    }
   }
 }
