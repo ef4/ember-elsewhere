@@ -93,4 +93,4 @@ For more information on using ember-cli, visit [http://www.ember-cli.com/](http:
 [npm-badge-link]: http://badge.fury.io/js/ember-elsewhere
 [ember-observer-badge]: http://emberobserver.com/badges/ember-elsewhere.svg
 [ember-observer-url]: http://emberobserver.com/addons/ember-elsewhere
-[ember-version]: https://embadge.io/v1/badge.svg?start=1.13.0
+[ember-version]: https://embadge.io/v1/badge.svg?start=2.3.2
