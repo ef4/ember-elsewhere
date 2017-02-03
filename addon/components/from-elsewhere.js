@@ -16,7 +16,7 @@ export default Ember.Component.extend({
     return Ember.getOwner(this).lookup('service:fastboot');
   }),
   isFastBoot: Ember.computed('fastboot', function() {
-    return this.get('fastboot') && this.get('fastboot.isFastBoot');
+    return this.get('fastboot.isFastBoot');
   }),
 
   // We don't yield any content on the very first render pass, because
