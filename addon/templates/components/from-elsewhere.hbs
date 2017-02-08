@@ -1,8 +1,8 @@
 {{#if initialized}}
   {{#if hasBlock}}
-    {{yield (get (get service.actives name) 'component') }}
+    {{yield (get (get service.actives name) 'lastObject.component') }}
   {{else}}
-    {{#with (get (get service.actives name) 'component') as |c|}}
+    {{#with (get (get service.actives name) 'lastObject.component') as |c|}}
       {{component c}}
     {{/with}}
   {{/if}}

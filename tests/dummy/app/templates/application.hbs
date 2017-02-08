@@ -1,13 +1,13 @@
 {{modal-target}}
 
 <div class="v-container">
-{{#from-elsewhere name="tools" as |tools|}}
-  <div class="topbar">
-    {{#liquid-bind tools rules=toolsAnimationRules as |t|}}
-      {{component t}}
-    {{/liquid-bind}}
-  </div>
-{{/from-elsewhere}}
+  {{#from-elsewhere name="tools" as |tools|}}
+    <div class="topbar">
+      {{#liquid-bind tools rules=toolsAnimationRules as |t|}}
+        {{component t}}
+      {{/liquid-bind}}
+    </div>
+  {{/from-elsewhere}}
 
   <div class="container">
     <main>
@@ -18,6 +18,7 @@
 
         <li>The green toolbar (visible only on some pages) is a target named "tools", implemented with a <code>\{{#from-elsewhere}}</code> component that allows it to be composed with liquid-fire animations.</li>
         <li>There is a "modal" target that demonstrates animated modals. See the button on {{#link-to "third"}}Third Page{{/link-to}}.</li>
+        <li>There is an "actions" target, implemented with a <code>\{{#multiple-from-elsewhere name="actions"}}</code> that allows you to pass multiple components. Check {{#link-to "fourth"}}Fourth Page{{/link-to}}.</li>
       </ol>
 
       <p>As you use the links below to switch between the three routes, each route can choose to place content into either of the sidebars by including <code>\{{in-sidebar}}</code>. </p>
@@ -26,6 +27,7 @@
         {{#link-to 'index'}}First Page{{/link-to}}
         {{#link-to 'second'}}Second Page{{/link-to}}
         {{#link-to 'third'}}Third Page{{/link-to}}
+        {{#link-to 'fourth'}}Fourth Page{{/link-to}}
       </nav>
 
       {{outlet}}
@@ -35,5 +37,13 @@
       {{from-elsewhere name="right"}}
     </div>
 
+  </div>
+
+  <div class="bottom-bar">
+    {{#multiple-from-elsewhere name="actions" as |c|}}
+      <div class="action">
+        {{component c}}
+      </div>
+    {{/multiple-from-elsewhere}}
   </div>
 </div>

@@ -1,0 +1,10 @@
+{{! BEGIN-SNIPPET fourth }}
+<p>This is the fourth page. It sends multiple "button" components into the same orange "actions" bar at the bottom.</p>
+
+{{to-elsewhere named="actions" send=(component "test-button" text="Button1")}}
+{{to-elsewhere named="actions" send=(component "test-button" text="Button3")}}
+{{to-elsewhere named="actions" send=(component "test-button" text="Button2")}}
+
+{{! END-SNIPPET }}
+
+{{code-snippet name="fourth.hbs"}}
