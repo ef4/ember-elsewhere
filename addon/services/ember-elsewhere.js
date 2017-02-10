@@ -36,7 +36,7 @@ export default Service.extend({
       newActives[target] = newActives[target] || emArray();
       let newActive = component ? { component, order } : null;
 
-      newActives[target].addObject(newActive);
+      newActives[target].push(newActive);
     });
     Object.keys(newActives).forEach((target) => {
       newActives[target] = newActives[target].sortBy('order');
