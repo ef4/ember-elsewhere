@@ -1,0 +1,9 @@
+{{#if initialized}}
+  {{#each (get service.actives name) as |source|}}
+    {{#if hasBlock}}
+      {{yield source.component}}
+    {{else}}
+      {{component source.component}}
+    {{/if}}
+  {{/each}}
+{{/if}}

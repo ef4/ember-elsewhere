@@ -27,6 +27,15 @@ main {
     box-sizing: border-box;
     background-color: #BCD0B1;
 }
+.bottom-bar {
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #FF6600;
+}
+.action {
+  display: inline-block;
+  padding: 1.5em 0 1.5em 1.5em;
+}
 .tools {
     padding: 1.5em;
     line-height: 1.5em;

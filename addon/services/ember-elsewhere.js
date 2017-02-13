@@ -1,5 +1,5 @@
 import Ember from 'ember';
-const { Service, run, Object: EmObject } = Ember;
+const { Service, run, Object: EmObject, A: emArray } = Ember;
 
 export default Service.extend({
   init() {
@@ -8,6 +8,7 @@ export default Service.extend({
     this._alive = {};
     this._counter = 1;
   },
+
   show(sourceId, name, component) {
     this._alive[sourceId] = {
       target: name || 'default',
@@ -16,24 +17,31 @@ export default Service.extend({
     };
     this._schedule();
   },
+
   clear(sourceId) {
     delete this._alive[sourceId];
     this._schedule();
   },
+
   _schedule() {
     run.scheduleOnce('afterRender', this, this._process);
   },
+
   _process() {
     let newActives = {};
     let alive = this._alive;
 
-    Object.keys(alive).forEach(sourceId => {
+    Object.keys(alive).forEach((sourceId) => {
       let { target, component, order } = alive[sourceId];
-      let existing = newActives[target];
-      if (!existing || existing.order < order) {
-        newActives[target] = component ? { component, order } : null;
-      }
+      newActives[target] = newActives[target] || emArray();
+      let newActive = component ? { component, order } : null;
+
+      newActives[target].push(newActive);
     });
+    Object.keys(newActives).forEach((target) => {
+      newActives[target] = newActives[target].sortBy('order');
+    });
+
     this.set('actives', EmObject.create(newActives));
   }
 });
