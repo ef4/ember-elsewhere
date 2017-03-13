@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.0
+
+ - FEATURE: new multiple-from-elsewhere component by @vladucu
+ - I'm naming this 1.0.0 because the public API has remained stable for a while. 
+
 ## 0.4.1
 
 - BUGFIX: newer ember-cli-htmlbars to avoid build-time deprecation warning about calling super from init
