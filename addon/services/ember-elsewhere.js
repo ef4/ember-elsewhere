@@ -28,6 +28,10 @@ export default Service.extend({
   },
 
   _process() {
+    if (this.isDestroying || this.isDestroyed) {
+      return;
+    }
+
     let newActives = {};
     let alive = this._alive;
 
