@@ -1,15 +1,10 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  modalAnimation
+  classNames: ['modal-target'],
+  backgroundAnimation
 });
 
-function modalAnimation() {
-  return this.lookup('explode').call(this, {
-    pick: '.modal-background',
-    use: ['fade', { maxOpacity: 0.5 }]
-  },{
-    pick: '.modal-dialog',
-    use: 'to-left'
-  });
+function backgroundAnimation() {
+  return this.lookup('cross-fade').call(this, { maxOpacity: 0.5 });
 }
