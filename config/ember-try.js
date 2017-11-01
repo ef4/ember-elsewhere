@@ -78,6 +78,10 @@ module.exports = {
       npm: {
         devDependencies: {}
       }
+    },
+    {
+      name: 'fastboot',
+      command: 'yarn run test:fastboot'
     }
   ]
 };
