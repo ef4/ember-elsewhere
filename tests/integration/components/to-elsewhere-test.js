@@ -44,4 +44,15 @@ module('Integration | Component | to elsewhere', function(hooks) {
     assert.notEqual(this.element.querySelector('.my-target').textContent.trim().indexOf('Hello World from Foo'), -1);
     assert.notEqual(this.element.querySelector('.my-target').textContent.trim().indexOf('Hello World from Bar'), -1);
   });
+
+  test('destination can come before source', async function(assert) {
+    await render(hbs`<div class="my-target">{{from-elsewhere name="my-target"}}</div><div class="source">{{to-elsewhere named="my-target" send=(component "x-foo")}}</div>`);
+    assert.equal(this.element.querySelector('.my-target').textContent.trim(), 'Hello World from Foo');
+  });
+
+  test('source can come before destination', async function(assert) {
+    await render(hbs`<div class="source">{{to-elsewhere named="my-target" send=(component "x-foo")}}</div><div class="my-target">{{from-elsewhere name="my-target"}}</div>`);
+    assert.equal(this.element.querySelector('.my-target').textContent.trim(), 'Hello World from Foo');
+  });
+
 });
