@@ -20,7 +20,7 @@
   "scripts": {
     "build": "ember build",
     "start": "ember server",
-    "test": "ember try:each"
+    "test": "eslint . && ember try:each",
   },
   "dependencies": {
     "ember-cli-babel": "^6.3.0",
