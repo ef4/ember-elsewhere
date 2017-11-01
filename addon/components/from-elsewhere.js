@@ -12,21 +12,32 @@ export default Ember.Component.extend({
     }
   },
 
-  fastboot: Ember.computed(function() {
-    return Ember.getOwner(this).lookup('service:fastboot');
-  }),
-  isFastBoot: Ember.computed('fastboot', function() {
-    return this.get('fastboot.isFastBoot');
-  }),
-
   // We don't yield any content on the very first render pass, because
   // we want to give any concurrent {{to-elsewhere}} components a chance
   // to declare their intentions first. This allows the components
   // inside us to see a meaningful initial value on their initial
   // render.
-  initialized: Ember.computed.bool('isFastBoot'),
-  didInsertElement() {
+  initialized: false,
+
+
+  // we use init here instead of didInsertElement because we want to
+  // take action even in fastboot.
+  init() {
     this._super();
-    Ember.run.schedule('afterRender', () => this.set('initialized', true));
+
+    let promise = new Ember.RSVP.Promise(resolve => {
+      Ember.run.schedule('afterRender', () => {
+        if (!this.isDestroyed) {
+          this.set('initialized', true);
+        }
+        resolve();
+      });
+    });
+
+    let fastboot = Ember.getOwner(this).lookup('service:fastboot');
+    if (fastboot && fastboot.get("isFastBoot")) {
+      fastboot.deferRendering(promise);
+    }
   }
+
 });
