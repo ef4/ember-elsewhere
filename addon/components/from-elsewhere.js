@@ -10,6 +10,9 @@ export default Ember.Component.extend({
     if (!this.get('name')) {
       this.set('name', 'default');
     }
+    if (this.get('named')) {
+      throw new Error(`from-elsewhere takes a "name" parameter, not "named"`);
+    }
   },
 
   // We don't yield any content on the very first render pass, because

@@ -6,6 +6,9 @@ export default Ember.Component.extend({
   service: Ember.inject.service('ember-elsewhere'),
   tagName: '',
   didReceiveAttrs() {
+    if (this.get('name')) {
+      throw new Error(`to-elsewhere takes a "named=" parameter, not "name="`);
+    }
     this.get('service').show(Ember.guidFor(this), this.get('named'), this.get('send'));
   },
   willDestroyElement() {
