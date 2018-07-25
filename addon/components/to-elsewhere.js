@@ -13,6 +13,7 @@ export default Ember.Component.extend({
   },
   willDestroyElement() {
     this.get('service').clear(Ember.guidFor(this));
+    this._super(...arguments);
   }
 
 });
