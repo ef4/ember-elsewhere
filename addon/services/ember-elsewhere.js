@@ -3,7 +3,7 @@ const { Service, run, Object: EmObject, A: emArray } = Ember;
 
 export default Service.extend({
   init() {
-    this._super();
+    this._super(...arguments);
     this.set('actives', EmObject.create());
     this._alive = {};
     this._counter = 1;
