@@ -43,7 +43,7 @@ export default Service.extend({
       newActives[target].push(newActive);
     });
     Object.keys(newActives).forEach((target) => {
-      newActives[target] = newActives[target].sortBy('order');
+      newActives[target] = emArray(newActives[target].sortBy('order'));
     });
 
     this.set('actives', EmObject.create(newActives));
