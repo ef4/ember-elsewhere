@@ -1,6 +1,6 @@
 {
   "name": "ember-elsewhere",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Render elsewhere in the DOM, with nice composition, animation, etc. Based on 100% public API.",
   "keywords": [
     "ember-addon",
