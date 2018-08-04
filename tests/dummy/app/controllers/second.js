@@ -1,8 +1,10 @@
-import Ember from 'ember';
+import { A } from '@ember/array';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   init() {
-    this.set('handled', Ember.A());
+    this._super(...arguments);
+    this.set('handled', A());
   },
   actions: {
     handleIt() {

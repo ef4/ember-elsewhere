@@ -1,5 +1,7 @@
-import Ember from 'ember';
-const { Service, run, Object: EmObject, A: emArray } = Ember;
+import Service from '@ember/service';
+import { run } from '@ember/runloop';
+import EmObject from '@ember/object';
+import { A as emArray } from '@ember/array';
 
 export default Service.extend({
   init() {

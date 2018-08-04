@@ -13,12 +13,12 @@ module('Integration | Component | to elsewhere', function(hooks) {
 
   test('it works with inline from-elsewhere', async function(assert) {
     await render(hbs`<div class="my-target">{{from-elsewhere name="my-target"}}</div><div class="source">{{to-elsewhere named="my-target" send=(component "x-foo")}}</div>`);
-    assert.equal(this.element.querySelector('.my-target').textContent.trim(), 'Hello World from Foo');
+    assert.dom(this.element.querySelector('.my-target')).hasText('Hello World from Foo');
   });
 
   test('it works with block-form from-elsewhere', async function(assert) {
     await render(hbs`<div class="my-target">{{#from-elsewhere name="my-target" as |c|}}{{component c}}{{/from-elsewhere}}</div><div class="source">{{to-elsewhere named="my-target" send=(component "x-foo")}}</div>`);
-    assert.equal(this.element.querySelector('.my-target').textContent.trim(), 'Hello World from Foo');
+    assert.dom(this.element.querySelector('.my-target')).hasText('Hello World from Foo');
   });
 
   test('it works with with inline multiple-from-elsewhere', async function(assert) {
@@ -47,12 +47,12 @@ module('Integration | Component | to elsewhere', function(hooks) {
 
   test('destination can come before source', async function(assert) {
     await render(hbs`<div class="my-target">{{from-elsewhere name="my-target"}}</div><div class="source">{{to-elsewhere named="my-target" send=(component "x-foo")}}</div>`);
-    assert.equal(this.element.querySelector('.my-target').textContent.trim(), 'Hello World from Foo');
+    assert.dom(this.element.querySelector('.my-target')).hasText('Hello World from Foo');
   });
 
   test('source can come before destination', async function(assert) {
     await render(hbs`<div class="source">{{to-elsewhere named="my-target" send=(component "x-foo")}}</div><div class="my-target">{{from-elsewhere name="my-target"}}</div>`);
-    assert.equal(this.element.querySelector('.my-target').textContent.trim(), 'Hello World from Foo');
+    assert.dom(this.element.querySelector('.my-target')).hasText('Hello World from Foo');
   });
 
 });

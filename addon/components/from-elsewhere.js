@@ -1,9 +1,13 @@
+import { getOwner } from '@ember/application';
+import { schedule } from '@ember/runloop';
+import { Promise } from 'rsvp';
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
 import layout from '../templates/components/from-elsewhere';
-import Ember from 'ember';
 
-export default Ember.Component.extend({
+export default Component.extend({
   layout,
-  service: Ember.inject.service('ember-elsewhere'),
+  service: service('ember-elsewhere'),
   tagName: '',
 
   didReceiveAttrs() {
@@ -28,8 +32,8 @@ export default Ember.Component.extend({
   init() {
     this._super();
 
-    let promise = new Ember.RSVP.Promise(resolve => {
-      Ember.run.schedule('afterRender', () => {
+    let promise = new Promise(resolve => {
+      schedule('afterRender', () => {
         if (!this.isDestroyed) {
           this.set('initialized', true);
         }
@@ -37,7 +41,7 @@ export default Ember.Component.extend({
       });
     });
 
-    let fastboot = Ember.getOwner(this).lookup('service:fastboot');
+    let fastboot = getOwner(this).lookup('service:fastboot');
     if (fastboot && fastboot.get("isFastBoot")) {
       fastboot.deferRendering(promise);
     }
