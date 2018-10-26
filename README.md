@@ -43,6 +43,18 @@ For fancier behaviors, you can use the block form of `{{#from-elsewhere}}`, whic
 {{/from-elsewhere}}
 ```
 
+## Rendering multiple components into a single target
+
+There might be use cases where you would like to render multiple component into a single target, for example a from-elsewhere "actions" might receive multiple action buttons via to-elsewhere. Instead of from-elsewhere just use the complementary **multiple-from-elsewhere** component.
+
+```hbs
+{{multiple-from-elsewhere name="actions"}}
+<!-- ... -->
+{{to-elsewhere named="actions" send=(component "test-button" text="Button1")}}
+{{to-elsewhere named="actions" send=(component "test-button" text="Button3")}}
+{{to-elsewhere named="actions" send=(component "test-button" text="Button2")}}
+```
+
 ## Passing additional state through to the target
 
 When you're using the block form of `from-elsewhere`, it's entirely up to you what value you send to the target. It can be more than just a component. Here is a complete example of an animatable modal that supports an `onOutsideClick` action while providing shared layout for the background and container:
