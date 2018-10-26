@@ -78,6 +78,10 @@ When you're using the block form of `from-elsewhere`, it's entirely up to you wh
 {{/from-elsewhere}}
 ```
 
+## Crossing Engines
+
+Engines deliberately are deliberately isolated from each other, so a `to-elsewhere` in one engine cannot target a `from-elsewhere` in another. But you can optionally share the ember-elsewhere service between them to make it work, see https://github.com/ef4/ember-elsewhere/issues/26#issuecomment-432217049
+
 ### Linting
 
 * `ember server`
