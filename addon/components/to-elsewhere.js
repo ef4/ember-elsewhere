@@ -11,10 +11,23 @@ export default Component.extend({
     if (this.get('name')) {
       throw new Error(`to-elsewhere takes a "named=" parameter, not "name="`);
     }
+    this.checkForDeprecations();
     this.get('service').show(guidFor(this), this.get('named'), this.get('send'), this.get('params'));
   },
   willDestroyElement() {
     this.get('service').clear(guidFor(this));
+  },
+  checkForDeprecations() {
+    // typeof null is object, so we need to check for it explicitly
+    if (this.send && typeof this.send === 'object' ) {
+      for (let key in this.send) {
+        const isAComponent = this.send[key].inner && this.send[key].inner.hasOwnProperty('ComponentClass')
+        if (isAComponent) {
+          // show deprecation warning if someone does `send=(hash a=(component "my-component"))`
+          console.warn('DEPRECATION in ember-elsewhere: Sending a component inside a hash is deprecated. Use params instead to provide a hash of content. For example, `send=(component "my-component") params=(hash foo="foo" bar="bar")`')
+        }
+      }
+    }
   }
 
 });
