@@ -57,26 +57,32 @@ There might be use cases where you would like to render multiple component into 
 
 ## Passing additional state through to the target
 
-When you're using the block form of `from-elsewhere`, it's entirely up to you what value you send to the target. It can be more than just a component. Here is a complete example of an animatable modal that supports an `onOutsideClick` action while providing shared layout for the background and container:
+When you're using the block form of `from-elsewhere`, it's entirely up to you what information you pass to the target. It can be more than just a component. Here is a complete example of an animatable modal that supports an `onOutsideClick` action while providing shared layout for the background and container:
 
 ```hbs
 {{to-elsewhere named="modal"
-               send=(hash body=(component "warning-message")
-                          onOutsideClick=(action "close")) }}
+               send=(component "warning-message")
+               params=(hash onOutsideClick=(action "close") 
+                      heading="heading text")
+                          }}
 ```
 
 ```hbs
-{{#from-elsewhere name="modal" as |modal|}}
+{{#from-elsewhere name="modal" as |modal params|}}
   {{#liquid-bind modal as |currentModal|}}
     <div class="modal-container">
-      <div class="modal-background" onclick={{action currentModal.onOutsideClick}}></div>
+      <div class="modal-background" onclick={{action params.onOutsideClick}}></div>
       <div class="modal-dialog" >
-        {{component currentModal.body}}
+        {{component currentModal heading=params.heading}}
       </div>
     </div>
   {{/liquid-bind}}
 {{/from-elsewhere}}
 ```
+
+If you plan to `send` a component, you should use Ember's [component helper](https://guides.emberjs.com/release/components/defining-a-component/#toc_dynamically-rendering-a-component).
+If you need to provide additional content, you can use the `params` attribute.
+This allows for tree-shaking in build pipelines like [Embroider](https://github.com/embroider-build/embroider).
 
 ## Crossing Engines
 
