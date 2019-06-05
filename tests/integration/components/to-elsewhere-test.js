@@ -9,6 +9,7 @@ module('Integration | Component | to elsewhere', function(hooks) {
   hooks.beforeEach(function() {
     this.owner.register('template:components/x-foo', hbs`Hello World from Foo`);
     this.owner.register('template:components/x-bar', hbs`Hello World from Bar`);
+    this.owner.register('template:components/x-baz', hbs`{{params.greeting}} from Baz`);
   });
 
   test('it works with inline from-elsewhere', async function(assert) {
@@ -53,6 +54,11 @@ module('Integration | Component | to elsewhere', function(hooks) {
   test('source can come before destination', async function(assert) {
     await render(hbs`<div class="source">{{to-elsewhere named="my-target" send=(component "x-foo")}}</div><div class="my-target">{{from-elsewhere name="my-target"}}</div>`);
     assert.dom(this.element.querySelector('.my-target')).hasText('Hello World from Foo');
+  });
+
+  test('it accepts a params object', async function(assert) {
+    await render(hbs`<div class="source">{{to-elsewhere named="my-target" send=(component "x-baz") params=(hash greeting="Hello World")}}</div><div class="my-target">{{from-elsewhere name="my-target"}}</div>`);
+    assert.dom(this.element.querySelector('.my-target')).hasText('Hello World from Baz');
   });
 
 });
