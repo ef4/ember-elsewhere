@@ -56,8 +56,12 @@ module('Integration | Component | to elsewhere', function(hooks) {
     assert.dom(this.element.querySelector('.my-target')).hasText('Hello World from Foo');
   });
 
-  test('it accepts a params object', async function(assert) {
+  test('it accepts a params object for inline form', async function(assert) {
     await render(hbs`<div class="source">{{to-elsewhere named="my-target" send=(component "x-baz") params=(hash greeting="Hello World")}}</div><div class="my-target">{{from-elsewhere name="my-target"}}</div>`);
+    assert.dom(this.element.querySelector('.my-target')).hasText('Hello World from Baz');
+  });
+  test('it accepts a params object for block form', async function(assert) {
+    await render(hbs`<div class="source">{{#to-elsewhere named="my-target" send=(component "x-baz") params=(hash greeting="Hello World")}}Some content{{/to-elsewhere}}</div><div class="my-target">{{from-elsewhere name="my-target"}}</div>`);
     assert.dom(this.element.querySelector('.my-target')).hasText('Hello World from Baz');
   });
 
