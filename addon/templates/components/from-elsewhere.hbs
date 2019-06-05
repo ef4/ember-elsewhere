@@ -3,7 +3,7 @@
     {{yield (get (get service.actives name) 'lastObject.component') }}
   {{else}}
     {{#with (get (get service.actives name) 'lastObject.component') as |c|}}
-      {{component c}}
+      {{component c params=(get (get service.actives name) 'lastObject.params')}}
     {{/with}}
   {{/if}}
 {{/if}}
