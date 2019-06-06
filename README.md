@@ -81,8 +81,8 @@ When you're using the block form of `from-elsewhere`, it's entirely up to you wh
 ```
 
 If you plan to `send` a component, you should use Ember's [component helper](https://guides.emberjs.com/release/components/defining-a-component/#toc_dynamically-rendering-a-component).
-If you need to provide additional content, you can use the `params` attribute.
-This allows for tree-shaking in build pipelines like [Embroider](https://github.com/embroider-build/embroider).
+The component helper accepts the component name and other properties, such as `{{component "my-component-name" someValue="something"}}`, which will cover most use cases.
+However, if you need to provide additional content to use outside of the component scope, that is when you can use the `params` attribute.
 
 ## Crossing Engines
 
