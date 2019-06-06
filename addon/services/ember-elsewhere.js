@@ -11,12 +11,12 @@ export default Service.extend({
     this._counter = 1;
   },
 
-  show(sourceId, name, component, params) {
+  show(sourceId, name, component, outsideParams) {
     this._alive[sourceId] = {
       target: name || 'default',
       component,
       order: this._counter++,
-      params
+      outsideParams
     };
     this._schedule();
   },
@@ -39,9 +39,9 @@ export default Service.extend({
     let alive = this._alive;
 
     Object.keys(alive).forEach((sourceId) => {
-      let { target, component, order, params } = alive[sourceId];
+      let { target, component, order, outsideParams } = alive[sourceId];
       newActives[target] = newActives[target] || emArray();
-      let newActive = component ? { component, order, params } : null;
+      let newActive = component ? { component, order, outsideParams } : null;
       newActives[target].push(newActive);
     });
     Object.keys(newActives).forEach((target) => {

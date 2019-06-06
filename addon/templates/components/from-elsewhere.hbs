@@ -1,9 +1,9 @@
 {{#if initialized}}
   {{#if hasBlock}}
-    {{yield (get (get service.actives name) 'lastObject.component') (get (get service.actives name) 'lastObject.params')}}
+    {{yield (get (get service.actives name) 'lastObject.component') (get (get service.actives name) 'lastObject.outsideParams')}}
   {{else}}
     {{#with (get (get service.actives name) 'lastObject.component') as |c|}}
-      {{component c params=(get (get service.actives name) 'lastObject.params')}}
+      {{component c outsideParams=(get (get service.actives name) 'lastObject.outsideParams')}}
     {{/with}}
   {{/if}}
 {{/if}}
