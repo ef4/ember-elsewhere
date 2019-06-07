@@ -11,7 +11,7 @@ export default Component.extend({
     if (this.get('name')) {
       throw new Error(`to-elsewhere takes a "named=" parameter, not "name="`);
     }
-    this.get('service').show(guidFor(this), this.get('named'), this.get('send'));
+    this.get('service').show(guidFor(this), this.get('named'), this.get('send'), this.get('outsideParams'));
   },
   willDestroyElement() {
     this.get('service').clear(guidFor(this));

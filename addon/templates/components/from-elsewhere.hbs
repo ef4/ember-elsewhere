@@ -1,9 +1,11 @@
 {{#if initialized}}
-  {{#if hasBlock}}
-    {{yield (get (get service.actives name) 'lastObject.component') }}
-  {{else}}
-    {{#with (get (get service.actives name) 'lastObject.component') as |c|}}
-      {{component c}}
-    {{/with}}
-  {{/if}}
+  {{#let (get service.actives name) as |active| }}
+    {{#if hasBlock}}
+      {{yield active.lastObject.component active.lastObject.outsideParams}}
+    {{else}}
+      {{#with active.lastObject.component as |c|}}
+        {{component c}}
+      {{/with}}
+    {{/if}}
+  {{/let}}
 {{/if}}

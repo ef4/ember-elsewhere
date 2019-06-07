@@ -9,6 +9,8 @@ module('Integration | Component | to elsewhere', function(hooks) {
   hooks.beforeEach(function() {
     this.owner.register('template:components/x-foo', hbs`Hello World from Foo`);
     this.owner.register('template:components/x-bar', hbs`Hello World from Bar`);
+    this.owner.register('template:components/x-baz', hbs`{{outsideParams.greeting}} from Baz`);
+    this.owner.register('template:components/x-blip', hbs`{{outsideParams.greeting}} from Blip`);    
   });
 
   test('it works with inline from-elsewhere', async function(assert) {
@@ -53,6 +55,11 @@ module('Integration | Component | to elsewhere', function(hooks) {
   test('source can come before destination', async function(assert) {
     await render(hbs`<div class="source">{{to-elsewhere named="my-target" send=(component "x-foo")}}</div><div class="my-target">{{from-elsewhere name="my-target"}}</div>`);
     assert.dom(this.element.querySelector('.my-target')).hasText('Hello World from Foo');
+  });
+
+  test('it accepts an outsideParams object for block form', async function(assert) {
+    await render(hbs`<div class="source">{{to-elsewhere named="my-target" send=(component "x-blip") outsideParams=(hash greeting="Hello World")}}</div><div class="my-target">{{#from-elsewhere name="my-target" as |content outsideParams|}} {{component content outsideParams=outsideParams}}{{/from-elsewhere}}</div>`);
+    assert.dom(this.element.querySelector('.my-target')).hasText('Hello World from Blip');
   });
 
 });
