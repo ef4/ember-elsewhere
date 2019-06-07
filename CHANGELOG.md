@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.0
+
+- FEATURE: new `outsideParams` attribute #31
+
 ## 1.0.5
 
  - BUGFIX: workaround an issue in Ember 3.3+
