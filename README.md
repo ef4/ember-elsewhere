@@ -63,7 +63,7 @@ When you're using the block form of `from-elsewhere`, it's entirely up to you wh
 {{to-elsewhere named="modal"
                send=(component "warning-message")
                outsideParams=(hash onOutsideClick=(action "close") 
-                      heading="heading text")
+                              title="modal title")
                           }}
 ```
 
@@ -73,7 +73,8 @@ When you're using the block form of `from-elsewhere`, it's entirely up to you wh
     <div class="modal-container">
       <div class="modal-background" onclick={{action outsideParams.onOutsideClick}}></div>
       <div class="modal-dialog" >
-        {{component currentModal heading=outsideParams.heading}}
+        <div class="modal-title">{{outsideParams.title}}</div>
+        {{component currentModal}}
       </div>
     </div>
   {{/liquid-bind}}
