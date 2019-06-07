@@ -4,7 +4,7 @@
       {{yield active.lastObject.component active.lastObject.outsideParams}}
     {{else}}
       {{#with active.lastObject.component as |c|}}
-        {{component c outsideParams=active.lastObject.outsideParams}}
+        {{component c}}
       {{/with}}
     {{/if}}
   {{/let}}
