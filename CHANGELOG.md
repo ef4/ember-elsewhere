@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.0
+
+ - FEATURE: add the `outsideParams` option to multiple-from-elsewhere too
+
 ## 1.1.0
 
 - FEATURE: new `outsideParams` attribute #31
