@@ -62,4 +62,17 @@ module('Integration | Component | to elsewhere', function(hooks) {
     assert.dom(this.element.querySelector('.my-target')).hasText('Hello World from Blip');
   });
 
+
+  test('it accepts an outsideParams object for block form', async function(assert) {
+    await render(hbs`
+      <div class="my-target">
+        {{#multiple-from-elsewhere name="my-target" as |c outsideParams|}}{{component c outsideParams=outsideParams}}{{/multiple-from-elsewhere}}
+      </div>
+      <div class="source">{{to-elsewhere named="my-target" send=(component "x-baz") outsideParams=(hash greeting='Morning')}}</div>
+      <div class="source">{{to-elsewhere named="my-target" send=(component "x-blip") outsideParams=(hash greeting='Afternoon')}}</div>
+    `);
+    assert.notEqual(this.element.querySelector('.my-target').textContent.trim().indexOf('Morning from Baz'), -1);
+    assert.notEqual(this.element.querySelector('.my-target').textContent.trim().indexOf('Afternoon from Blip'), -1);
+  });
+
 });
