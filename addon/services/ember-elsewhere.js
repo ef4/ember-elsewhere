@@ -11,11 +11,17 @@ export default Service.extend({
     this._counter = 1;
   },
 
-  show(sourceId, name, component, outsideParams) {
+  show(sourceId, name, component, outsideParams, order = 0) {
+    // if current component has specific order that is greater than current internal count
+    // update internal count so any subsequent component that does not provide order will
+    // be after.
+    if (this._counter < order) {
+      this._counter = order + 1
+    }
     this._alive[sourceId] = {
       target: name || 'default',
       component,
-      order: this._counter++,
+      order: order || this._counter++,
       outsideParams
     };
     this._schedule();

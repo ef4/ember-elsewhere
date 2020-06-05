@@ -10,7 +10,7 @@ module('Integration | Component | to elsewhere', function(hooks) {
     this.owner.register('template:components/x-foo', hbs`Hello World from Foo`);
     this.owner.register('template:components/x-bar', hbs`Hello World from Bar`);
     this.owner.register('template:components/x-baz', hbs`{{outsideParams.greeting}} from Baz`);
-    this.owner.register('template:components/x-blip', hbs`{{outsideParams.greeting}} from Blip`);    
+    this.owner.register('template:components/x-blip', hbs`{{outsideParams.greeting}} from Blip`);
   });
 
   test('it works with inline from-elsewhere', async function(assert) {
@@ -75,4 +75,41 @@ module('Integration | Component | to elsewhere', function(hooks) {
     assert.notEqual(this.element.querySelector('.my-target').textContent.trim().indexOf('Afternoon from Blip'), -1);
   });
 
+  test('when order is not provided, it rendered based on logical ordering', async function (assert) {
+    await render(hbs`
+      <div class="my-target">
+        {{#multiple-from-elsewhere name="my-target" as |c|}}{{component c}}{{/multiple-from-elsewhere}}
+      </div>
+      <div class="source">{{to-elsewhere named="my-target" send=(component "x-foo" id="foo")}}</div>
+      <div class="source">{{to-elsewhere named="my-target" send=(component "x-bar" id="bar")}}</div>
+    `);
+    assert.equal(this.element.querySelector('#foo').nextElementSibling, document.querySelector('#bar'));
+  })
+
+  test('when order is provided, it rendered elements based on the given order', async function (assert) {
+    await render(hbs`
+      <div class="my-target">
+        {{#multiple-from-elsewhere name="my-target" as |c|}}{{component c}}{{/multiple-from-elsewhere}}
+      </div>
+      <div class="source">{{to-elsewhere named="my-target" send=(component "x-foo" id="foo") order=20}}</div>
+      <div class="source">{{to-elsewhere named="my-target" send=(component "x-bar" id="bar") order=10}}</div>
+    `);
+
+    assert.equal(this.element.querySelector('#bar').nextElementSibling, document.querySelector('#foo'));
+  })
+
+  test('when some elements has no order but some does, it uses mixture of natural ordering and provided ordering', async function (assert) {
+    await render(hbs`
+      <div class="my-target">
+        {{#multiple-from-elsewhere name="my-target" as |c|}}{{component c}}{{/multiple-from-elsewhere}}
+      </div>
+      <div class="source">{{to-elsewhere named="my-target" send=(component "x-blip" id="blip") outsideParams=(hash greeting='Afternoon')}}</div>
+      <div class="source">{{to-elsewhere named="my-target" send=(component "x-foo" id="foo") order=20}}</div>
+      <div class="source">{{to-elsewhere named="my-target" send=(component "x-bar" id="bar") order=10}}</div>
+      <div class="source">{{to-elsewhere named="my-target" send=(component "x-baz" id="baz") outsideParams=(hash greeting='Morning')}}</div>
+    `);
+    assert.equal(this.element.querySelector('#blip').nextElementSibling, document.querySelector('#bar'));
+    assert.equal(this.element.querySelector('#bar').nextElementSibling, document.querySelector('#foo'));
+    assert.equal(this.element.querySelector('#foo').nextElementSibling, document.querySelector('#baz'));
+  })
 });
