@@ -89,6 +89,11 @@ However, if you need to provide additional content to use outside of the compone
 
 Engines deliberately are deliberately isolated from each other, so a `to-elsewhere` in one engine cannot target a `from-elsewhere` in another. But you can optionally share the ember-elsewhere service between them to make it work, see https://github.com/ef4/ember-elsewhere/issues/26#issuecomment-432217049
 
+## Ember's native in-element
+
+Since Ember 3.21 there is also a native `in-element` helper. This helper offer less functionality than this addon,
+but may be enough for some use-cases. [More details](https://api.emberjs.com/ember/3.21/classes/Ember.Templates.helpers/methods/in-element?anchor=in-element)
+
 ### Linting
 
 * `ember server`
