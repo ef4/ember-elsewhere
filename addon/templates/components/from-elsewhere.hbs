@@ -1,6 +1,6 @@
 {{#if initialized}}
   {{#let (get service.actives name) as |active| }}
-    {{#if hasBlock}}
+    {{#if (has-block)}}
       {{yield active.lastObject.component active.lastObject.outsideParams}}
     {{else}}
       {{#with active.lastObject.component as |c|}}
