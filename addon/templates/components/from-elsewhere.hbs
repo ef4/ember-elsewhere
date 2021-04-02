@@ -3,9 +3,9 @@
     {{#if hasBlock}}
       {{yield active.lastObject.component active.lastObject.outsideParams}}
     {{else}}
-      {{#with active.lastObject.component as |c|}}
+      {{#let active.lastObject.component as |c|}}
         {{component c}}
-      {{/with}}
+      {{/let}}
     {{/if}}
   {{/let}}
 {{/if}}
