@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.1
+
+ - COMPAT: fix deprecations in newer ember versions
+
 ## 1.2.0
 
  - FEATURE: add the `outsideParams` option to multiple-from-elsewhere too
