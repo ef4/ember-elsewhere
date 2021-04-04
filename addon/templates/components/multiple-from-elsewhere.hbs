@@ -1,6 +1,6 @@
 {{#if initialized}}
   {{#each (get service.actives name) as |source|}}
-    {{#if hasBlock}}
+    {{#if (has-block)}}
       {{yield source.component source.outsideParams}}
     {{else}}
       {{component source.component}}
