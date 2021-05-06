@@ -1,5 +1,5 @@
-{{#if initialized}}
-  {{#each (get service.actives name) as |source|}}
+{{#if this.initialized}}
+  {{#each (get this.service.actives this.name) as |source|}}
     {{#if (has-block)}}
       {{yield source.component source.outsideParams}}
     {{else}}
