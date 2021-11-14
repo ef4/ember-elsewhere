@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.2.2
+ - COMPAT: fix `this` fallback deprecation
+
 ## 1.2.1
 
  - COMPAT: fix deprecations in newer ember versions
