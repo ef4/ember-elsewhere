@@ -1,5 +1,5 @@
-{{#if initialized}}
-  {{#let (get service.actives name) as |active| }}
+{{#if this.initialized}}
+  {{#let (get this.service.actives this.name) as |active| }}
     {{#if (has-block)}}
       {{yield active.lastObject.component active.lastObject.outsideParams}}
     {{else}}
