@@ -15,6 +15,13 @@ module.exports = {
     browser: true
   },
   rules: {
+    'ember/no-classic-components': 'off',
+    'ember/no-component-lifecycle-hooks': 'off',
+    'ember/require-super-in-lifecycle-hooks': 'off',
+    'ember/require-tagless-components': 'off',
+    'ember/no-actions-hash': 'off',
+    'ember/no-classic-classes': 'off',
+    'ember/no-get': 'off'
   },
   overrides: [
     // node files

@@ -4,6 +4,12 @@
 [![Ember Observer Score][ember-observer-badge]][ember-observer-url]
 ![Ember Version][ember-version]
 
+## Compatibility
+
+* Ember.js v3.8 or above
+* Ember CLI v3.8 or above
+* Node.js v12 or above
+* 
 This addon makes it easy to manage sidebars, toolbars, popups, modals, or any piece of DOM that you want to lift outside your normal route hiearchy.
 
 It is similar to [ember-wormhole](https://github.com/yapplabs/ember-wormhole), but is a better choice when your target is within your own Ember app (as opposed to arbitrary, potentially foreign DOM). It is also easier to compose with animations and it's based on 100% public API.

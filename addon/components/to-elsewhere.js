@@ -1,6 +1,7 @@
 import { guidFor } from '@ember/object/internals';
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
+import { get } from '@ember/object';
 import layout from '../templates/components/to-elsewhere';
 
 export default Component.extend({
@@ -8,13 +9,13 @@ export default Component.extend({
   service: service('ember-elsewhere'),
   tagName: '',
   didReceiveAttrs() {
-    if (this.get('name')) {
+    if (get(this, 'name')) {
       throw new Error(`to-elsewhere takes a "named=" parameter, not "name="`);
     }
-    this.get('service').show(guidFor(this), this.get('named'), this.get('send'), this.get('outsideParams'), this.get('order'));
+    get(this, 'service').show(guidFor(this), get(this, 'named'), get(this, 'send'), get(this, 'outsideParams'), get(this, 'order'));
   },
   willDestroyElement() {
-    this.get('service').clear(guidFor(this));
+    get(this, 'service').clear(guidFor(this));
   }
 
 });
