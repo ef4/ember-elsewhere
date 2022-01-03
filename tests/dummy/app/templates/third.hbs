@@ -1,13 +1,13 @@
 {{! BEGIN-SNIPPET third }}
 <p>This is the third page.</p>
 
-<p><button {{action (action (mut warn) true)}}>Launch a modal</button></p>
+<p><button {{action (action (mut this.warn) true)}}>Launch a modal</button></p>
 
 <ToElsewhere @named="tools" @send={{component "third-tools"}} />
 
-{{#if warn}}
-  <ToElsewhere @named="modal" @send={{hash body=(component "warning-modal" onCancel=(action (mut warn) false))
-                                          onOutsideClick=(action (mut warn) false)}} />
+{{#if this.warn}}
+  <ToElsewhere @named="modal" @send={{hash body=(component "warning-modal" onCancel=(action (mut this.warn) false))
+                                          onOutsideClick=(action (mut this.warn) false)}} />
 {{/if}}
 
 

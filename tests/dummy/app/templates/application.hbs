@@ -3,7 +3,7 @@
 <div class="v-container">
   <FromElsewhere @name="tools" as |tools|>
     <div class="topbar">
-      {{#liquid-bind tools rules=toolsAnimationRules as |t|}}
+      {{#liquid-bind tools rules=this.toolsAnimationRules as |t|}}
         {{component t}}
       {{/liquid-bind}}
     </div>

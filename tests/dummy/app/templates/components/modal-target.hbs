@@ -1,5 +1,5 @@
 <FromElsewhere @name="modal" as |modal|>
-  {{#liquid-bind modal containerless=true use=modalAnimation as |currentModal|}}
+  {{#liquid-bind modal containerless=true use=this.modalAnimation as |currentModal|}}
     {{#if currentModal}}
       <div class="modal-container">
         <div class="modal-background" onclick={{action currentModal.onOutsideClick}}></div>
