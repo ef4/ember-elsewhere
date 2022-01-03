@@ -1,10 +1,10 @@
-{{!- BEGIN-SNIPPET second }}
+{{! BEGIN-SNIPPET second }}
 <div>This is the second page. It sends the "second-tools" component into the green "tools" bar, and receives actions back.</div>
 {{#each this.handled as |h|}}
   <div>{{h}}</div>
 {{/each}}
 
 <ToElsewhere @named="tools" @send={{component "second-tools" doIt=this.handleIt }} />
-{{!- END-SNIPPET }}
+{{! END-SNIPPET }}
 
 <CodeSnippet @name="second.hbs" />
