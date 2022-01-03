@@ -8,7 +8,7 @@ export default Controller.extend({
   },
   actions: {
     handleIt() {
-      this.get('handled').pushObject("I handled an event");
+      this.handled.pushObject("I handled an event");
     }
   }
 });

@@ -1,4 +1,4 @@
-{{#from-elsewhere name="modal" as |modal|}}
+<FromElsewhere @name="modal" as |modal|>
   {{#liquid-bind modal containerless=true use=modalAnimation as |currentModal|}}
     {{#if currentModal}}
       <div class="modal-container">
@@ -9,4 +9,4 @@
       </div>
     {{/if}}
   {{/liquid-bind}}
-{{/from-elsewhere}}
+</FromElsewhere>

@@ -11,10 +11,10 @@ export default Component.extend({
   tagName: '',
 
   didReceiveAttrs() {
-    if (!this.get('name')) {
+    if (!this.name) {
       this.set('name', 'default');
     }
-    if (this.get('named')) {
+    if (this.named) {
       throw new Error(`from-elsewhere takes a "name" parameter, not "named"`);
     }
   },

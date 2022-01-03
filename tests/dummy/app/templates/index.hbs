@@ -3,7 +3,7 @@
 
 <p>The model says: {{model.title}}</p>
 
-{{to-elsewhere named="right" send=(component "first-sidebar" model=model)}}
+<ToElsewhere @named="right" @send={{component "first-sidebar" model=model}} />
 {{!- END-SNIPPET }}
 
-{{code-snippet name="index.hbs"}}
+<CodeSnippet @name="index.hbs" />

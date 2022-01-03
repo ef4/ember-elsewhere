@@ -8,13 +8,13 @@ export default Component.extend({
   service: service('ember-elsewhere'),
   tagName: '',
   didReceiveAttrs() {
-    if (this.get('name')) {
+    if (this.name) {
       throw new Error(`to-elsewhere takes a "named=" parameter, not "name="`);
     }
-    this.get('service').show(guidFor(this), this.get('named'), this.get('send'), this.get('outsideParams'), this.get('order'));
+    this.service.show(guidFor(this), this.named, this.send, this.outsideParams, this.order);
   },
   willDestroyElement() {
-    this.get('service').clear(guidFor(this));
+    this.service.clear(guidFor(this));
   }
 
 });
