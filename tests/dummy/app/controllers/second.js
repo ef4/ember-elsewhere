@@ -1,14 +1,12 @@
 import { A } from '@ember/array';
 import Controller from '@ember/controller';
+import { action } from '@ember/object';
 
-export default Controller.extend({
-  init() {
-    this._super(...arguments);
-    this.set('handled', A());
-  },
-  actions: {
-    handleIt() {
-      this.handled.pushObject("I handled an event");
-    }
+export default class extends Controller {
+  handled = A();
+
+  @action
+  handleIt() {
+    this.handled.pushObject('I handled an event');
   }
-});
+}
