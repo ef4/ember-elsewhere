@@ -4,7 +4,7 @@
   <div>{{h}}</div>
 {{/each}}
 
-<ToElsewhere @named="tools" @send={{component "second-tools" doIt=(action "handleIt") }} />
+<ToElsewhere @named="tools" @send={{component "second-tools" doIt=this.handleIt }} />
 {{!- END-SNIPPET }}
 
 <CodeSnippet @name="second.hbs" />

@@ -1,8 +1,8 @@
 import Controller from '@ember/controller';
 
-export default Controller.extend({
-  toolsAnimationRules
-});
+export default class extends Controller {
+  toolsAnimationRules = toolsAnimationRules;
+}
 
 function toolsAnimationRules() {
   this.transition(
@@ -11,9 +11,5 @@ function toolsAnimationRules() {
     this.use('to-down'),
     this.reverse('to-up')
   );
-  this.transition(
-    this.fromValue(true),
-    this.toValue(true),
-    this.use('fade')
-  );
+  this.transition(this.fromValue(true), this.toValue(true), this.use('fade'));
 }

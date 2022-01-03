@@ -1,6 +1,6 @@
 import Controller from '@ember/controller';
 
-export default Controller.extend({
-  queryParams: ['warn'],
-  warn: false
-});
+export default class extends Controller {
+  queryParams = ['warn'];
+  warn = false;
+}
