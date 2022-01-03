@@ -1,19 +1,26 @@
 import { guidFor } from '@ember/object/internals';
-import { inject as service } from '@ember/service';
-import Component from '@ember/component';
+import { inject } from '@ember/service';
+import Component from '@glimmer/component';
 
-export default Component.extend({
-  service: service('ember-elsewhere'),
-  tagName: '',
+export default class extends Component {
+  @inject('ember-elsewhere') service;
 
-  didReceiveAttrs() {
-    if (this.name) {
+  get sideEffect() {
+    if (this.args.name) {
       throw new Error(`to-elsewhere takes a "named=" parameter, not "name="`);
     }
-    this.service.show(guidFor(this), this.named, this.send, this.outsideParams, this.order);
-  },
+    this.service.show(
+      guidFor(this),
+      this.args.named,
+      this.args.send,
+      this.args.outsideParams,
+      this.args.order
+    );
+    return undefined;
+  }
 
-  willDestroyElement() {
+  willDestroy() {
+    super.willDestroy();
     this.service.clear(guidFor(this));
   }
-});
+}
