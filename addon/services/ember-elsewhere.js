@@ -1,5 +1,5 @@
 import Service from '@ember/service';
-import { run } from '@ember/runloop';
+import { scheduleOnce } from '@ember/runloop';
 import EmObject from '@ember/object';
 import { A as emArray } from '@ember/array';
 import { tracked } from '@glimmer/tracking';
@@ -32,7 +32,7 @@ export default class extends Service {
   }
 
   _schedule() {
-    run.scheduleOnce('afterRender', this, this._process);
+    scheduleOnce('afterRender', this, this._process);
   }
 
   _process() {
