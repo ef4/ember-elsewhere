@@ -33,8 +33,7 @@
   },
   "dependencies": {
     "ember-cli-babel": "^7.26.10",
-    "ember-cli-htmlbars": "^5.7.2",
-    "ember-let-polyfill": "^0.1.0"
+    "ember-cli-htmlbars": "^5.7.2"
   },
   "devDependencies": {
     "@ember/jquery": "^2.0.0",
