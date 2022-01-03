@@ -3,10 +3,8 @@ import { schedule } from '@ember/runloop';
 import { Promise } from 'rsvp';
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
-import layout from '../templates/components/from-elsewhere';
 
 export default Component.extend({
-  layout,
   service: service('ember-elsewhere'),
   tagName: '',
 
@@ -25,7 +23,6 @@ export default Component.extend({
   // inside us to see a meaningful initial value on their initial
   // render.
   initialized: false,
-
 
   // we use init here instead of didInsertElement because we want to
   // take action even in fastboot.
@@ -46,5 +43,4 @@ export default Component.extend({
       fastboot.deferRendering(promise);
     }
   }
-
 });
