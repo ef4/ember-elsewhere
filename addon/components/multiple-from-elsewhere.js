@@ -1,3 +1,2 @@
 import FromElsewhereComponent from './from-elsewhere';
-
-export default FromElsewhereComponent.extend({});
+export default class extends FromElsewhereComponent {}
