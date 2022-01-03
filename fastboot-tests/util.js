@@ -16,7 +16,7 @@ module.exports = function setup(hooks) {
       request: { headers: { host: 'localhost:4200' } },
     };
     let page = await fastboot.visit(url, visitOpts);
-    assert.equal(page.statusCode, expectStatus, `status code for ${url}`);
+    assert.strictEqual(page.statusCode, expectStatus, `status code for ${url}`);
     let html = await page.html();
     let dom = new JSDOM(html);
     return dom.window.document;

@@ -150,7 +150,7 @@ module('Integration | Component | to elsewhere', function (hooks) {
       <div class="source">{{to-elsewhere named="my-target" send=(component "x-foo")}}</div>
       <div class="source">{{to-elsewhere named="my-target" send=(component "x-bar")}}</div>
     `);
-    assert.equal(
+    assert.strictEqual(
       this.element.querySelector('#foo').nextElementSibling,
       document.querySelector('#bar')
     );
@@ -165,7 +165,7 @@ module('Integration | Component | to elsewhere', function (hooks) {
       <div class="source">{{to-elsewhere named="my-target" send=(component "x-bar") order=10}}</div>
     `);
 
-    assert.equal(
+    assert.strictEqual(
       this.element.querySelector('#bar').nextElementSibling,
       document.querySelector('#foo')
     );
@@ -181,15 +181,15 @@ module('Integration | Component | to elsewhere', function (hooks) {
       <div class="source">{{to-elsewhere named="my-target" send=(component "x-bar" ) order=10}}</div>
       <div class="source">{{to-elsewhere named="my-target" send=(component "x-baz" ) outsideParams=(hash greeting='Morning')}}</div>
     `);
-    assert.equal(
+    assert.strictEqual(
       this.element.querySelector('#blip').nextElementSibling,
       document.querySelector('#bar')
     );
-    assert.equal(
+    assert.strictEqual(
       this.element.querySelector('#bar').nextElementSibling,
       document.querySelector('#foo')
     );
-    assert.equal(
+    assert.strictEqual(
       this.element.querySelector('#foo').nextElementSibling,
       document.querySelector('#baz')
     );

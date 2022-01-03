@@ -14,12 +14,12 @@ module('Unit | Service | ember elsewhere', function (hooks) {
       service.show('source', 'my-sidebar', component);
     });
 
-    assert.equal(
+    assert.strictEqual(
       typeOf(service.get('actives.my-sidebar')),
       'array',
       'it returns an array'
     );
-    assert.equal(
+    assert.strictEqual(
       service.get('actives.my-sidebar.lastObject.component'),
       component,
       'last object in the array is the active component'
@@ -38,7 +38,7 @@ module('Unit | Service | ember elsewhere', function (hooks) {
       service.clear('source');
     });
 
-    assert.equal(service.get('actives.my-sidebar'), undefined);
+    assert.strictEqual(service.get('actives.my-sidebar'), undefined);
   });
 
   test('last shown source wins', function (assert) {
@@ -51,7 +51,7 @@ module('Unit | Service | ember elsewhere', function (hooks) {
       service.show('sourceB', 'my-sidebar', componentB);
     });
 
-    assert.equal(
+    assert.strictEqual(
       service.get('actives.my-sidebar.lastObject.component'),
       componentB
     );
@@ -61,7 +61,7 @@ module('Unit | Service | ember elsewhere', function (hooks) {
       service.show('sourceA', 'my-sidebar', componentA);
     });
 
-    assert.equal(
+    assert.strictEqual(
       service.get('actives.my-sidebar.lastObject.component'),
       componentA
     );
@@ -77,7 +77,7 @@ module('Unit | Service | ember elsewhere', function (hooks) {
       service.show('sourceB', 'my-sidebar', componentB);
     });
 
-    assert.equal(
+    assert.strictEqual(
       service.get('actives.my-sidebar.lastObject.component'),
       componentB
     );
@@ -86,7 +86,7 @@ module('Unit | Service | ember elsewhere', function (hooks) {
       service.clear('sourceB');
     });
 
-    assert.equal(
+    assert.strictEqual(
       service.get('actives.my-sidebar.lastObject.component'),
       componentA
     );
@@ -102,16 +102,16 @@ module('Unit | Service | ember elsewhere', function (hooks) {
       service.show('sourceB', 'my-sidebar', componentB);
     });
 
-    assert.equal(
+    assert.strictEqual(
       typeOf(service.get('actives.my-sidebar')),
       'array',
       'it returns an array'
     );
-    assert.equal(
+    assert.strictEqual(
       service.get('actives.my-sidebar.firstObject.component'),
       componentA
     );
-    assert.equal(
+    assert.strictEqual(
       service.get('actives.my-sidebar.lastObject.component'),
       componentB
     );

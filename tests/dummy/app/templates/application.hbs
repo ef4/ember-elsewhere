@@ -16,9 +16,9 @@
       <ol>
         <li>The blue sidebar is a target named "right", implemented as <code>\{{from-elsewhere name="right"}}</code>.</li>
 
-        <li>The green toolbar (visible only on some pages) is a target named "tools", implemented with a <code>\{{#from-elsewhere}}</code> component that allows it to be composed with liquid-fire animations.</li>
+        <li>The green toolbar (visible only on some pages) is a target named "tools", implemented with a <code>&lt;FromElsewhere&gt;</code> component that allows it to be composed with liquid-fire animations.</li>
         <li>There is a "modal" target that demonstrates animated modals. See the button on <LinkTo @route="third">Third Page</LinkTo>.</li>
-        <li>There is an "actions" target, implemented with a <code>\{{#multiple-from-elsewhere name="actions"}}</code> that allows you to pass multiple components. Check <LinkTo @route="fourth">Fourth Page</LinkTo>.</li>
+        <li>There is an "actions" target, implemented with a <code>&lt;MultipleFromElsewhere @name="actions"&gt;</code> that allows you to pass multiple components. Check <LinkTo @route="fourth">Fourth Page</LinkTo>.</li>
       </ol>
 
       <p>As you use the links below to switch between the three routes, each route can choose to place content into either of the sidebars by including <code>\{{in-sidebar}}</code>. </p>
