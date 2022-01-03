@@ -36,7 +36,7 @@ export default class extends Component {
     });
 
     let fastboot = getOwner(this).lookup('service:fastboot');
-    if (fastboot?.isFastBoot) {
+    if (fastboot && fastboot.isFastBoot) {
       fastboot.deferRendering(promise);
     }
   }
