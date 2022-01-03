@@ -7,10 +7,10 @@ module('Integration | Component | to elsewhere', function(hooks) {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(function() {
-    this.owner.register('template:components/x-foo', hbs`Hello World from Foo`);
-    this.owner.register('template:components/x-bar', hbs`Hello World from Bar`);
-    this.owner.register('template:components/x-baz', hbs`{{outsideParams.greeting}} from Baz`);
-    this.owner.register('template:components/x-blip', hbs`{{outsideParams.greeting}} from Blip`);
+    this.owner.register('template:components/x-foo', hbs`<div id="foo">Hello World from Foo</div>`);
+    this.owner.register('template:components/x-bar', hbs`<div id="bar">Hello World from Bar</div>`);
+    this.owner.register('template:components/x-baz', hbs`<div id="baz">{{@outsideParams.greeting}} from Baz</div>`);
+    this.owner.register('template:components/x-blip', hbs`<div id="blip">{{@outsideParams.greeting}} from Blip</div>`);
   });
 
   test('it works with inline from-elsewhere', async function(assert) {
@@ -63,7 +63,7 @@ module('Integration | Component | to elsewhere', function(hooks) {
   });
 
 
-  test('it accepts an outsideParams object for block form', async function(assert) {
+  test('multiple accepts an outsideParams object for block form', async function(assert) {
     await render(hbs`
       <div class="my-target">
         {{#multiple-from-elsewhere name="my-target" as |c outsideParams|}}{{component c outsideParams=outsideParams}}{{/multiple-from-elsewhere}}
@@ -80,8 +80,8 @@ module('Integration | Component | to elsewhere', function(hooks) {
       <div class="my-target">
         {{#multiple-from-elsewhere name="my-target" as |c|}}{{component c}}{{/multiple-from-elsewhere}}
       </div>
-      <div class="source">{{to-elsewhere named="my-target" send=(component "x-foo" id="foo")}}</div>
-      <div class="source">{{to-elsewhere named="my-target" send=(component "x-bar" id="bar")}}</div>
+      <div class="source">{{to-elsewhere named="my-target" send=(component "x-foo")}}</div>
+      <div class="source">{{to-elsewhere named="my-target" send=(component "x-bar")}}</div>
     `);
     assert.equal(this.element.querySelector('#foo').nextElementSibling, document.querySelector('#bar'));
   })
@@ -91,8 +91,8 @@ module('Integration | Component | to elsewhere', function(hooks) {
       <div class="my-target">
         {{#multiple-from-elsewhere name="my-target" as |c|}}{{component c}}{{/multiple-from-elsewhere}}
       </div>
-      <div class="source">{{to-elsewhere named="my-target" send=(component "x-foo" id="foo") order=20}}</div>
-      <div class="source">{{to-elsewhere named="my-target" send=(component "x-bar" id="bar") order=10}}</div>
+      <div class="source">{{to-elsewhere named="my-target" send=(component "x-foo") order=20}}</div>
+      <div class="source">{{to-elsewhere named="my-target" send=(component "x-bar") order=10}}</div>
     `);
 
     assert.equal(this.element.querySelector('#bar').nextElementSibling, document.querySelector('#foo'));
@@ -103,10 +103,10 @@ module('Integration | Component | to elsewhere', function(hooks) {
       <div class="my-target">
         {{#multiple-from-elsewhere name="my-target" as |c|}}{{component c}}{{/multiple-from-elsewhere}}
       </div>
-      <div class="source">{{to-elsewhere named="my-target" send=(component "x-blip" id="blip") outsideParams=(hash greeting='Afternoon')}}</div>
-      <div class="source">{{to-elsewhere named="my-target" send=(component "x-foo" id="foo") order=20}}</div>
-      <div class="source">{{to-elsewhere named="my-target" send=(component "x-bar" id="bar") order=10}}</div>
-      <div class="source">{{to-elsewhere named="my-target" send=(component "x-baz" id="baz") outsideParams=(hash greeting='Morning')}}</div>
+      <div class="source">{{to-elsewhere named="my-target" send=(component "x-blip" ) outsideParams=(hash greeting='Afternoon')}}</div>
+      <div class="source">{{to-elsewhere named="my-target" send=(component "x-foo" ) order=20}}</div>
+      <div class="source">{{to-elsewhere named="my-target" send=(component "x-bar" ) order=10}}</div>
+      <div class="source">{{to-elsewhere named="my-target" send=(component "x-baz" ) outsideParams=(hash greeting='Morning')}}</div>
     `);
     assert.equal(this.element.querySelector('#blip').nextElementSibling, document.querySelector('#bar'));
     assert.equal(this.element.querySelector('#bar').nextElementSibling, document.querySelector('#foo'));
