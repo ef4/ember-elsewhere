@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.0.0
+ - BREAKING: drop support for Ember < 3.24
+ - BREAKING: drop support for Node < 12
+ - COMPAT: fully-compatible with Ember 4 and Embroider
+
 ## 1.2.2
  - COMPAT: fix `this` fallback deprecation
 
