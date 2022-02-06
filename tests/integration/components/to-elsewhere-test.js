@@ -3,30 +3,27 @@ import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 import { setComponentTemplate } from '@ember/component';
+import { ensureSafeComponent } from '@embroider/util';
 import templateOnlyComponent from '@ember/component/template-only';
 
 module('Integration | Component | to elsewhere', function (hooks) {
   setupRenderingTest(hooks);
 
-  hooks.before(function () {
-    this.Foo = setComponentTemplate(
-      hbs`<div id="foo">Hello World from Foo</div>`,
-      templateOnlyComponent()
-    );
+  hooks.beforeEach(function () {
+    let component = (template) => {
+      return ensureSafeComponent(
+        setComponentTemplate(template, templateOnlyComponent()),
+        this
+      );
+    };
 
-    this.Bar = setComponentTemplate(
-      hbs`<div id="bar">Hello World from Bar</div>`,
-      templateOnlyComponent()
+    this.Foo = component(hbs`<div id="foo">Hello World from Foo</div>`);
+    this.Bar = component(hbs`<div id="bar">Hello World from Bar</div>`);
+    this.Baz = component(
+      hbs`<div id="baz">{{@outsideParams.greeting}} from Baz</div>`
     );
-
-    this.Baz = setComponentTemplate(
-      hbs`<div id="baz">{{@outsideParams.greeting}} from Baz</div>`,
-      templateOnlyComponent()
-    );
-
-    this.Blip = setComponentTemplate(
-      hbs`<div id="blip">{{@outsideParams.greeting}} from Blip</div>`,
-      templateOnlyComponent()
+    this.Blip = component(
+      hbs`<div id="blip">{{@outsideParams.greeting}} from Blip</div>`
     );
   });
 
