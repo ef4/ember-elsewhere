@@ -3,7 +3,7 @@
     {{#if (has-block)}}
       {{yield source.component source.outsideParams}}
     {{else}}
-      {{component source.component}}
+      {{component (ensure-safe-component source.component) }}
     {{/if}}
   {{/each}}
 {{/if}}

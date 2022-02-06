@@ -32,6 +32,7 @@
     "test:fastboot": "qunit fastboot-tests"
   },
   "dependencies": {
+    "@embroider/util": "^1.0.0",
     "ember-cli-babel": "^7.26.11",
     "ember-cli-htmlbars": "^6.0.1"
   },
