@@ -94,5 +94,8 @@
   "ember-addon": {
     "configPath": "tests/dummy/config",
     "demoURL": "http://ef4.github.io/ember-elsewhere/"
+  },
+  "volta": {
+    "node": "12.22.10"
   }
 }
