@@ -1,0 +1,15 @@
+<FromElsewhere @name="modal" as |modal|>
+  {{#liquid-bind modal containerless=true use=this.modalAnimation as |currentModal|}}
+    {{#if currentModal}}
+      <div class="modal-container">
+        {{!-- this rule is OK to ignore in this particular case because this is
+        a background-click handler. It's not a primary interaction. --}}
+        {{!-- template-lint-disable no-invalid-interactive --}}
+        <div class="modal-background" {{on "click" currentModal.onOutsideClick}}></div>
+        <div class="modal-dialog" >
+          <currentModal.body/>
+        </div>
+      </div>
+    {{/if}}
+  {{/liquid-bind}}
+</FromElsewhere>

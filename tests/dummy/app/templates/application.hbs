@@ -1,49 +1,47 @@
-{{modal-target}}
+<ModalTarget />
 
 <div class="v-container">
-  {{#from-elsewhere name="tools" as |tools|}}
+  <FromElsewhere @name="tools" as |tools|>
     <div class="topbar">
-      {{#liquid-bind tools rules=toolsAnimationRules as |t|}}
-        {{component t}}
+      {{#liquid-bind tools rules=this.toolsAnimationRules as |T|}}
+        <T/>
       {{/liquid-bind}}
     </div>
-  {{/from-elsewhere}}
+  </FromElsewhere>
 
   <div class="container">
     <main>
       <p>This app demonstrates the <a href="https://github.com/ef4/ember-elsewhere">Ember Elsewhere</a> addon. It contains three elsewhere targets:</p>
 
       <ol>
-        <li>The blue sidebar is a target named "right", implemented as <code>\{{from-elsewhere name="right"}}</code>.</li>
+        <li>The blue sidebar is a target named "right", implemented as <code>&lt;FromElsewhere @name="right"&gt;</code>.</li>
 
-        <li>The green toolbar (visible only on some pages) is a target named "tools", implemented with a <code>\{{#from-elsewhere}}</code> component that allows it to be composed with liquid-fire animations.</li>
-        <li>There is a "modal" target that demonstrates animated modals. See the button on {{#link-to "third"}}Third Page{{/link-to}}.</li>
-        <li>There is an "actions" target, implemented with a <code>\{{#multiple-from-elsewhere name="actions"}}</code> that allows you to pass multiple components. Check {{#link-to "fourth"}}Fourth Page{{/link-to}}.</li>
+        <li>The green toolbar (visible only on some pages) is a target named "tools", implemented with a <code>&lt;FromElsewhere&gt;</code> component that allows it to be composed with liquid-fire animations.</li>
+        <li>There is a "modal" target that demonstrates animated modals. See the button on <LinkTo @route="third">Third Page</LinkTo>.</li>
+        <li>There is an "actions" target, implemented with a <code>&lt;MultipleFromElsewhere @name="actions"&gt;</code> that allows you to pass multiple components. Check <LinkTo @route="fourth">Fourth Page</LinkTo>.</li>
       </ol>
 
-      <p>As you use the links below to switch between the three routes, each route can choose to place content into either of the sidebars by including <code>\{{in-sidebar}}</code>. </p>
-
       <nav>
-        {{#link-to 'index'}}First Page{{/link-to}}
-        {{#link-to 'second'}}Second Page{{/link-to}}
-        {{#link-to 'third'}}Third Page{{/link-to}}
-        {{#link-to 'fourth'}}Fourth Page{{/link-to}}
+        <LinkTo @route="index">First Page</LinkTo>
+        <LinkTo @route="second">Second Page</LinkTo>
+        <LinkTo @route="third">Third Page</LinkTo>
+        <LinkTo @route="fourth">Fourth Page</LinkTo>
       </nav>
 
       {{outlet}}
     </main>
 
     <div class="right-sidebar">
-      {{from-elsewhere name="right"}}
+      <FromElsewhere @name="right" />
     </div>
 
   </div>
 
   <div class="bottom-bar">
-    {{#multiple-from-elsewhere name="actions" as |c|}}
+    <MultipleFromElsewhere @name="actions" as |C|>
       <div class="action">
-        {{component c}}
+        <C/>
       </div>
-    {{/multiple-from-elsewhere}}
+    </MultipleFromElsewhere>
   </div>
 </div>

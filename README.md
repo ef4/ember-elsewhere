@@ -21,73 +21,72 @@ ember install ember-elsewhere
 Create a target named "my-right-sidebar":
 
 ```hbs
-{{from-elsewhere name="my-right-sidebar"}}
+<FromElsewhere @name="my-right-sidebar" />
 ```
 
 Anywhere else in your app, declare which component should render in the target -- complete with bound inputs and actions:
 
 ```hbs
-{{to-elsewhere named="my-right-sidebar" send=(component "cool-thing" model=model launch=(action "launchIt"))}}
+<ToElsewhere @named="my-right-sidebar" @send=(component "cool-thing" model=model launch=(action "launchIt"))/>
 ```
 
-For fancier behaviors, you can use the block form of `{{#from-elsewhere}}`, which gives you an opportunity to extend the target's behavior in arbitrary ways. For example, this lets your target animate as its content changes:
+For fancier behaviors, you can use the block form of `<FromElsewhere>`, which gives you an opportunity to extend the target's behavior in arbitrary ways. For example, this lets your target animate as its content changes:
 
 ```hbs
-{{#from-elsewhere name="modal" as |modal|}}
+<FromElsewhere @name="modal" as |modal|>
   {{#liquid-bind modal as |currentModal|}}
     <div class="modal-background"></div>
     <div class="modal-container">
       {{component modal}}
     </div>
   {{/liquid-bind}}
-{{/from-elsewhere}}
+</FromElsewhere>
 ```
 
 ## Rendering multiple components into a single target
 
-There might be use cases where you would like to render multiple component into a single target, for example a from-elsewhere "actions" might receive multiple action buttons via to-elsewhere. Instead of from-elsewhere just use the complementary **multiple-from-elsewhere** component.
+There might be use cases where you would like to render multiple component into a single target, for example a `<FromElsewhere>` "actions" might receive multiple action buttons via `<ToElsewhere>`. Instead of `<FromElsewhere/>` just use the complementary `<MultipleFromElsewhere>` component.
 
 ```hbs
-{{multiple-from-elsewhere name="actions"}}
+<MultipleFromElsewhere @name="actions"/>
 <!-- ... -->
-{{to-elsewhere named="actions" send=(component "test-button" text="Button1")}}
-{{to-elsewhere named="actions" send=(component "test-button" text="Button3")}}
-{{to-elsewhere named="actions" send=(component "test-button" text="Button2")}}
+<ToElsewhere @named="actions" @send={{component "test-button" text="Button1"}} />
+<ToElsewhere @named="actions" @send={{component "test-button" text="Button2"}} />
+<ToElsewhere @named="actions" @send={{component "test-button" text="Button3"}} />
 ```
 
 ## Passing additional state through to the target
 
-When you're using the block form of `from-elsewhere`, it's entirely up to you what information you pass to the target. It can be more than just a component. Here is a complete example of an animatable modal that supports an `onOutsideClick` action while providing shared layout for the background and container:
+When you're using the block form of `<FromElsewhere>`, it's entirely up to you what information you pass to the target. It can be more than just a component. Here is a complete example of an animatable modal that supports an `onOutsideClick` action while providing shared layout for the background and container:
 
 ```hbs
-{{to-elsewhere named="modal"
-               send=(component "warning-message")
-               outsideParams=(hash onOutsideClick=(action "close") 
-                              title="modal title")
-                          }}
+<ToElsewhere @named="modal"
+             @send={{component "warning-message"}}
+             @outsideParams={{hash onOutsideClick=this.close 
+                                   title="modal title"}} />
 ```
 
 ```hbs
-{{#from-elsewhere name="modal" as |modal outsideParams|}}
+<FromElsewhere @name="modal" as |modal outsideParams|>
   {{#liquid-bind modal as |currentModal|}}
     <div class="modal-container">
-      <div class="modal-background" onclick={{action outsideParams.onOutsideClick}}></div>
+      <div class="modal-background" {{on "click" outsideParams.onOutsideClick}}></div>
       <div class="modal-dialog" >
         <div class="modal-title">{{outsideParams.title}}</div>
-        {{component currentModal}}
+        <currentModal />
       </div>
     </div>
   {{/liquid-bind}}
-{{/from-elsewhere}}
+</FromElsewhere>
 ```
 
-If you plan to `send` a component, you should use Ember's [component helper](https://guides.emberjs.com/release/components/defining-a-component/#toc_dynamically-rendering-a-component).
+If you plan to `send` a component, you can use Ember's [component helper](https://guides.emberjs.com/release/components/defining-a-component/#toc_dynamically-rendering-a-component).
 The component helper accepts the component name and other properties, such as `{{component "my-component-name" someValue="something"}}`, which will cover most use cases.
 However, if you need to provide additional content to use outside of the component scope, that is when you can use the `outsideParams` attribute.
 
 ## Crossing Engines
 
-Engines deliberately are deliberately isolated from each other, so a `to-elsewhere` in one engine cannot target a `from-elsewhere` in another. But you can optionally share the ember-elsewhere service between them to make it work, see https://github.com/ef4/ember-elsewhere/issues/26#issuecomment-432217049
+Engines deliberately are deliberately isolated from each other, so a `<ToElsewhere>` in one engine cannot target a `<FromElsewhere>` in another. But you can optionally share the ember-elsewhere service between them to make it work, see https://github.com/ef4/ember-elsewhere/issues/26#issuecomment-432217049
 
 ## Ember's native in-element
 

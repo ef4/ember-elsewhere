@@ -2,9 +2,17 @@
 
 const EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
 
-module.exports = function(defaults) {
+module.exports = function (defaults) {
   let app = new EmberAddon(defaults, {
-    snippetSearchPaths: ['tests/dummy']
+    autoImport: {
+      webpack: {
+        target: 'web',
+      },
+    },
+    snippetSearchPaths: ['tests/dummy'],
+    'ember-prism': {
+      components: ['markup'],
+    },
   });
 
   /*
@@ -14,5 +22,12 @@ module.exports = function(defaults) {
     behave. You most likely want to be modifying `./index.js` or app's build file
   */
 
-  return app.toTree();
+  const { maybeEmbroider } = require('@embroider/test-setup');
+  return maybeEmbroider(app, {
+    skipBabel: [
+      {
+        package: 'qunit',
+      },
+    ],
+  });
 };

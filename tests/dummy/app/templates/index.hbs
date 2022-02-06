@@ -1,9 +1,9 @@
-{{!- BEGIN-SNIPPET index }}
-<p>This is the first page. It sends the "first-sidebar" component into the "right" sidebar.</p>
+{{! BEGIN-SNIPPET index }}
+<p>This is the first page. It sends the "FirstSidebar" component into the "right" sidebar.</p>
 
-<p>The model says: {{model.title}}</p>
+<p>The model says: {{this.model.title}}</p>
 
-{{to-elsewhere named="right" send=(component "first-sidebar" model=model)}}
-{{!- END-SNIPPET }}
+<ToElsewhere @named="right" @send={{component "first-sidebar" model=this.model}} />
+{{! END-SNIPPET }}
 
-{{code-snippet name="index.hbs"}}
+<CodeSnippet @name="index.hbs" />
