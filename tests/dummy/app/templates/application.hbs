@@ -3,8 +3,8 @@
 <div class="v-container">
   <FromElsewhere @name="tools" as |tools|>
     <div class="topbar">
-      {{#liquid-bind tools rules=this.toolsAnimationRules as |t|}}
-        {{component t}}
+      {{#liquid-bind tools rules=this.toolsAnimationRules as |T|}}
+        <T/>
       {{/liquid-bind}}
     </div>
   </FromElsewhere>
@@ -38,9 +38,9 @@
   </div>
 
   <div class="bottom-bar">
-    <MultipleFromElsewhere @name="actions" as |c|>
+    <MultipleFromElsewhere @name="actions" as |C|>
       <div class="action">
-        {{component c}}
+        <C/>
       </div>
     </MultipleFromElsewhere>
   </div>

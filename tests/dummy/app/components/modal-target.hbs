@@ -7,7 +7,7 @@
         {{!-- template-lint-disable no-invalid-interactive --}}
         <div class="modal-background" {{on "click" currentModal.onOutsideClick}}></div>
         <div class="modal-dialog" >
-          {{component currentModal.body}}
+          <currentModal.body/>
         </div>
       </div>
     {{/if}}
