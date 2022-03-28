@@ -27,7 +27,13 @@ Create a target named "my-right-sidebar":
 Anywhere else in your app, declare which component should render in the target -- complete with bound inputs and actions:
 
 ```hbs
-<ToElsewhere @named="my-right-sidebar" @send=(component "cool-thing" model=model launch=(action "launchIt"))/>
+<ToElsewhere
+  @named="my-right-sidebar"
+  @send={{component "cool-thing"
+    model=this.model
+    launch=this.launchIt
+  }}
+/>
 ```
 
 For fancier behaviors, you can use the block form of `<FromElsewhere>`, which gives you an opportunity to extend the target's behavior in arbitrary ways. For example, this lets your target animate as its content changes:
