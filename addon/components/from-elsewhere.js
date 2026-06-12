@@ -1,12 +1,12 @@
 import { getOwner } from '@ember/application';
 import { schedule } from '@ember/runloop';
 import { Promise } from 'rsvp';
-import { inject } from '@ember/service';
+import { service } from '@ember/service';
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 
 export default class extends Component {
-  @inject('ember-elsewhere') service;
+  @service('ember-elsewhere') service;
 
   get name() {
     if (this.args.named) {

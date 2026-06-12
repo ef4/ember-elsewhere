@@ -1,9 +1,9 @@
 import { guidFor } from '@ember/object/internals';
-import { inject } from '@ember/service';
+import { service } from '@ember/service';
 import Component from '@glimmer/component';
 
 export default class extends Component {
-  @inject('ember-elsewhere') service;
+  @service('ember-elsewhere') service;
 
   get sideEffect() {
     if (this.args.name) {
