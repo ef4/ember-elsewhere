@@ -1,6 +1,8 @@
 import { guidFor } from '@ember/object/internals';
-import { inject } from '@ember/service';
 import Component from '@glimmer/component';
+import * as s from '@ember/service';
+
+const inject = s.service ?? s.inject;
 
 export default class extends Component {
   @inject('ember-elsewhere') service;
