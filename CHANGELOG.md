@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.0.1
+
+ - BUGFIX: fix `inject` deprecation on newer embers
+
 ## 2.0.0
  - BREAKING: drop support for Ember < 3.24
  - BREAKING: drop support for Node < 12
