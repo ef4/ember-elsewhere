@@ -51,7 +51,7 @@ For fancier behaviors, you can use the block form of `<FromElsewhere>`, which gi
 
 ## Rendering multiple components into a single target
 
-There might be use cases where you would like to render multiple component into a single target, for example a `<FromElsewhere>` "actions" might receive multiple action buttons via `<ToElsewhere>`. Instead of `<FromElsewhere/>` just use the complementary `<MultipleFromElsewhere>` component.
+There might be use cases where you would like to render multiple components into a single target, for example a `<FromElsewhere>` "actions" might receive multiple action buttons via `<ToElsewhere>`. Instead of `<FromElsewhere/>` just use the complementary `<MultipleFromElsewhere>` component.
 
 ```hbs
 <MultipleFromElsewhere @name="actions"/>
@@ -92,11 +92,11 @@ However, if you need to provide additional content to use outside of the compone
 
 ## Crossing Engines
 
-Engines deliberately are deliberately isolated from each other, so a `<ToElsewhere>` in one engine cannot target a `<FromElsewhere>` in another. But you can optionally share the ember-elsewhere service between them to make it work, see https://github.com/ef4/ember-elsewhere/issues/26#issuecomment-432217049
+Engines are deliberately isolated from each other, so a `<ToElsewhere>` in one engine cannot target a `<FromElsewhere>` in another. But you can optionally share the ember-elsewhere service between them to make it work, see https://github.com/ef4/ember-elsewhere/issues/26#issuecomment-432217049
 
 ## Ember's native in-element
 
-Since Ember 3.21 there is also a native `in-element` helper. This helper offer less functionality than this addon,
+Since Ember 3.21 there is also a native `in-element` helper. This helper offers less functionality than this addon,
 but may be enough for some use-cases. [More details](https://api.emberjs.com/ember/3.21/classes/Ember.Templates.helpers/methods/in-element?anchor=in-element)
 
 ### Linting
